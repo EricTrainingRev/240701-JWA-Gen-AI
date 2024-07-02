@@ -9,19 +9,32 @@ public class PrimitiveTypes {
      */
 
     // Numeric whole number primitives
-    byte byteData = 1;
-    short shortData = 2;
-    int  intData = 3; // for our purposes int will usually suffice
-    long longData = 4;
+    byte byteData;
+    short shortData;
+    int  intData; // for our purposes int will usually suffice
+    long longData;
 
     // Numeric floating point value primitives
     // an extra step for making float data is adding an "f" to the end of the number
-    float floatData = 1.1f; // for our purposes float will usually suffice
-    double doubleData = 1.2;
+    float floatData; // for our purposes float will usually suffice
+    double doubleData;
 
     // represents individual characters
-    char charData = 'a';
+    char charData;
 
     // logical true/false
-    boolean ultimateTruthAboutTheUniverse = true;
+    boolean ultimateTruthAboutTheUniverse;
+
+    public static void main(String[] args) {
+        PrimitiveTypes defaultExample = new PrimitiveTypes();
+        // default values
+        System.out.println(defaultExample.byteData); // 0
+        System.out.println(defaultExample.shortData); // 0
+        System.out.println(defaultExample.intData); // 0
+        System.out.println(defaultExample.longData); // 0
+        System.out.println(defaultExample.floatData); // 0.0
+        System.out.println(defaultExample.doubleData); // 0.0
+        System.out.println(defaultExample.charData); // NUL ASCII character (unicode '\u0000')
+        System.out.println(defaultExample.ultimateTruthAboutTheUniverse); // false
+    }
 }
