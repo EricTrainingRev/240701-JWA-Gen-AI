@@ -2,10 +2,10 @@ package controller;
 
 import java.util.Scanner;
 
-public class SystemPrompt {
+public class PromptController {
 
     public Scanner scanner;
-    public SystemPrompt(Scanner scanner){
+    public PromptController(Scanner scanner){
         this.scanner = scanner;
     }
 
@@ -32,13 +32,19 @@ public class SystemPrompt {
         return scanner.nextLine();
     }
 
-    public String promptUserForInitialCasing(){
+    public void promptUserForInitialCasing(){
         System.out.println(INITIALCASINGPROMPT);
-        return scanner.nextLine();
+        int initialId = scanner.nextInt();
+        // need to get enum value associated with id provided
+        // this id is based off the prompt above
     }
 
     public String promptUserForTargetCasing(){
         System.out.println(INITIALCASINGPROMPT);
         return scanner.nextLine();
+    }
+
+    public String getCaseOption(int id){
+        return "";
     }
 }

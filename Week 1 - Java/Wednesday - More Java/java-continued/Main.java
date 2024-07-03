@@ -1,7 +1,6 @@
 import controller.CaseController;
-import controller.SystemPrompt;
-import exception.IncompatibleCaseException;
-import exception.InvalidCaseException;
+import controller.PromptController;
+import service.CaseService;
 
 import java.util.Scanner;
 
@@ -22,12 +21,13 @@ public class Main {
          */
 
         try(Scanner scanner = new Scanner(System.in)){
-            SystemPrompt systemPrompt = new SystemPrompt(scanner);
-            CaseController caseController = new CaseController();
+            PromptController promptController = new PromptController(scanner);
+            CaseService caseService = new CaseService();
+            CaseController caseController = new CaseController(caseService);
             boolean continueApplication = true; // we will change this to false when the app finishes
             while(continueApplication){
                 // this is where we will put our code to get the user input
-                String initialVariable = systemPrompt.promptUserForInitialVariableName();
+                String initialVariable = promptController.promptUserForInitialVariableName();
                 if(initialVariable.equals("q")){
                     // this is where we will put our code to exit the loop
                     System.out.println("Goodbye!");
@@ -35,30 +35,12 @@ public class Main {
                     break;
                 }
                 // we will also get the initial case styling of the input
-                String startingCase = systemPrompt.promptUserForInitialCasing();
+                String startingCase = promptController.promptUserForInitialCasing();
                 // and we will get the target casing to change the input into
-                String targetCase = systemPrompt.promptUserForTargetCasing();
+                String targetCase = promptController.promptUserForTargetCasing();
                 // this is where we will put our code to show the output
                 // of the case conversion
-                String result;
-                boolean startingCaseIsValid = Integer.parseInt(startingCase) >= 1
-                        &&
-                        Integer.parseInt(startingCase) <= 5;
-                boolean targetCaseIsValid = Integer.parseInt(targetCase) >= 1
-                        &&
-                        Integer.parseInt(targetCase) <= 5;
-                try{
-                    if (startingCaseIsValid && targetCaseIsValid){
-                        result = caseController.caseSelection(
-                                initialVariable,
-                                startingCase,
-                                targetCase);
-                    } else {
-                        throw new InvalidCaseException("Invalid number provided for one or more cases");
-                    }
-                } catch (InvalidCaseException exception){
-                    result = exception.getMessage();
-                }
+                String result = caseController.caseSelection(initialVariable, startingCase, targetCase);
                 System.out.println("transformation result: " + result);
 
 

@@ -3,5 +3,5 @@ public enum CaseOptions {
     PASCAL,
     CAMEL,
     SNAKE,
-    SCREAMINGSNAKE
+    SCREAMINGSNAKE,
 }
