@@ -1,5 +1,6 @@
 import controller.CaseController;
 import controller.PromptController;
+import entity.CaseOption;
 import service.CaseService;
 
 import java.util.Scanner;
@@ -35,15 +36,13 @@ public class Main {
                     break;
                 }
                 // we will also get the initial case styling of the input
-                String startingCase = promptController.promptUserForInitialCasing();
+                CaseOption startingCase = promptController.promptUserForInitialCasing();
                 // and we will get the target casing to change the input into
-                String targetCase = promptController.promptUserForTargetCasing();
+                CaseOption targetCase = promptController.promptUserForTargetCasing();
                 // this is where we will put our code to show the output
                 // of the case conversion
                 String result = caseController.caseSelection(initialVariable, startingCase, targetCase);
                 System.out.println("transformation result: " + result);
-
-
 
             }
         }

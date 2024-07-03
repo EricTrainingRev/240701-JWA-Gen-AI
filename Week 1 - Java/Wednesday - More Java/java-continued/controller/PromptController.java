@@ -1,5 +1,8 @@
 package controller;
 
+import entity.CaseOption;
+import exception.InvalidCaseException;
+
 import java.util.Scanner;
 
 public class PromptController {
@@ -32,19 +35,39 @@ public class PromptController {
         return scanner.nextLine();
     }
 
-    public void promptUserForInitialCasing(){
+    public CaseOption promptUserForInitialCasing(){
         System.out.println(INITIALCASINGPROMPT);
         int initialId = scanner.nextInt();
-        // need to get enum value associated with id provided
-        // this id is based off the prompt above
+        return getCaseOption(initialId);
     }
 
-    public String promptUserForTargetCasing(){
+    public CaseOption promptUserForTargetCasing(){
         System.out.println(INITIALCASINGPROMPT);
-        return scanner.nextLine();
+        int targetId =  scanner.nextInt();
+        return getCaseOption(targetId);
     }
 
-    public String getCaseOption(int id){
-        return "";
+    public CaseOption getCaseOption(int id){
+        CaseOption caseOption;
+        switch(id){
+            case 1:
+                caseOption = CaseOption.UPPERCASE;
+                break;
+            case 2:
+                caseOption = CaseOption.PASCAL;
+                break;
+            case 3:
+                caseOption = CaseOption.CAMEL;
+                break;
+            case 4:
+                caseOption = CaseOption.SNAKE;
+                break;
+            case 5:
+                caseOption = CaseOption.SCREAMINGSNAKE;
+                break;
+            default:
+                caseOption = CaseOption.INVALID;
+        }
+        return caseOption;
     }
 }
