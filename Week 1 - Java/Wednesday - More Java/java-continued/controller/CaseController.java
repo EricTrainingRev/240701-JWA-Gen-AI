@@ -1,5 +1,7 @@
 package controller;
 
+import exception.IncompatibleCaseException;
+
 public class CaseController {
 
     public String caseSelection(String variable, String initialCase, String targetCase){
@@ -8,10 +10,17 @@ public class CaseController {
             the targetCase gives us the new transformation rules we need to follow in order
             to convert the casing of the variable name correctly.
          */
-        if (initialCase.equals("2") && targetCase.equals("3")){
-               return pascalToCamel(variable);
+        try{
+            if (initialCase.equals("2") && targetCase.equals("3")){
+                return pascalToCamel(variable);
+            }
+            throw new IncompatibleCaseException(String.format("Invalide combination of cases:\n" +
+                    "initial case: %s\n" +
+                    "target case: %s", initialCase, targetCase)
+            );
+        } catch (IncompatibleCaseException exception){
+            return exception.getMessage();
         }
-        return "Not implemented yet";
     }
 
     public String pascalToCamel(String variable){

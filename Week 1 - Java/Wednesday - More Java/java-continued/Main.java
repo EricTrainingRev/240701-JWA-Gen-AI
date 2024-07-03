@@ -1,5 +1,7 @@
 import controller.CaseController;
 import controller.SystemPrompt;
+import exception.IncompatibleCaseException;
+import exception.InvalidCaseException;
 
 import java.util.Scanner;
 
@@ -38,7 +40,25 @@ public class Main {
                 String targetCase = systemPrompt.promptUserForTargetCasing();
                 // this is where we will put our code to show the output
                 // of the case conversion
-                String result = caseController.caseSelection(initialVariable, startingCase, targetCase);
+                String result;
+                boolean startingCaseIsValid = Integer.parseInt(startingCase) >= 1
+                        &&
+                        Integer.parseInt(startingCase) <= 5;
+                boolean targetCaseIsValid = Integer.parseInt(targetCase) >= 1
+                        &&
+                        Integer.parseInt(targetCase) <= 5;
+                try{
+                    if (startingCaseIsValid && targetCaseIsValid){
+                        result = caseController.caseSelection(
+                                initialVariable,
+                                startingCase,
+                                targetCase);
+                    } else {
+                        throw new InvalidCaseException("Invalid number provided for one or more cases");
+                    }
+                } catch (InvalidCaseException exception){
+                    result = exception.getMessage();
+                }
                 System.out.println("transformation result: " + result);
 
 

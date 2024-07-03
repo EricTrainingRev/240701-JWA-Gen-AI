@@ -15,3 +15,8 @@ associated number:
 3. CAMEL
 4. SNAKE
 5. SCREAMINGSNAKE
+
+# Message for Incompatible Case Selections
+Invalide combination of cases:
+initial case:
+target case:
