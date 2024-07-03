@@ -277,3 +277,152 @@ switch(x){
     }
 }
 ```
+
+## access modifiers
+|modifier|access|
+|-------|-------|
+|public|anywhere|
+|protected|within same package and sub-classes|
+|default (no keyword)|within same package|
+|private|within same class|
+
+## packages & imports
+packages are a way of organizing our Java code. The naming convention is to write a reverse web domain separating words with periods:
+```java 
+package com.revature.mypackage;
+```
+classes can be referenced anywhere in your program by either using their "fully qualified name" or by importing them.
+``` java
+// you use the import keyword to import from another package or class
+import packagename.classname
+
+// fully qualified class names include the package
+packagename.classname.method()
+
+```
+
+## Non-Access Modifiers
+Java includes some keywords that are not used to denote access levels: these three are the most common ones you will interact with in training
+- static
+    - marks the method/variable as part of the class scope
+- final
+    - makes a variable unable to be reassigned a new value
+    - makes a method incapable of being overridden
+    - makes a class incapable of being extended
+- abstract
+    - makes a class incapable of being instantiated
+    - marks a method as being defined without any implementation, which must be handled somewhere else
+
+There are other keywords as well, but we will not make much (if any) use of them:
+- synchronized 
+    - relevant to threads and preventing deadlock phenomena
+- transient 
+    - marks a variable as non-serializable, meaning it will not be persisted when written to a byte stream
+
+## Interfaces & Abstract Classes
+Interfaces are like "contracts" that give classes access to the variables and methods they contain: their methods default to public abstract, but interfaces can hold static methods, along with pre-defined methods that are intended to be overwritten. Abstract classes work like regular classes except they can't be instantiated
+
+Key differences between abstract classes and interfaces:
+|Abstract|Interface|
+|--------|---------|
+|class can't be instantiated|contract can't be instantiated|
+|instance variable/access modifiers|public static final variables|
+|concrete methods allowed|abstract methods normally(default/static allowed)|
+|can only inherit one class|can implement multiple interfaces|
+
+```java
+public abstract class MyAbstractStuff{
+    /*
+        abstract classes are very similar to regular classes, but they have two key differences: the first is
+        that they can declare their methods to be abstract, meaning that their implementation will be handled
+        by any class that extends this abstract class
+    */
+
+    public abstract void myAbstractMethod();
+
+    /*
+        the second key difference is that an abstract class can not be instantiated directly: to access the fields
+        and behaviors in the abstract class you need to extend the class with a child class and instantiate the
+        child class
+    */
+
+    // MyAbstractStuff myObject = new MyAbstractStuff() will cause an error in your code
+
+    /*
+        Other than the two points above, you can treat an abstract class like a regular class: fields can be class
+        or object scope, methods can have implementations, and you can utilize access modifiers like regular.
+    */
+}
+```
+
+```java
+public interface MyInterfaceStuff{
+    boolean myBoolean = true; // this is public static final by default
+
+    void someMethod(); // this is public abstract by default
+}
+```
+
+## Exception hierarchy
+![Exception Hierarchy](ExceptionHierarchy.jpg)
+## Exception Handling/Declaring
+Java throws exceptions when they occur. If no code is provided to handle the exception it will go all the way to the JVM and the JVM will terminate the program. You can handle exceptions as the developer by using try/catch blocks, similar to if/else blocks. This is called handling. You can also "duck" or declare exceptions by adding a throws clause to your method signature. This allows you to throw checked exceptions without catching it in the method
+```java
+// try to be specific with exceptions when possible
+public static void duckMethod() throws Exception{
+
+}
+```
+## Custom Exceptions
+You can create custom exceptions relatively easily. Create a class, extend either exception or runtime exception (or a more specific exception) add a constructor that has a message parameter, and in the constructor call super(argument). You're done
+```java
+class MyCheckedException extends Exception{
+    public MyCheckedException(String message){
+        super(message);
+    }
+}
+class MyUncheckedException extends RuntimeException{
+    public MyUncheckedException(String message){
+        super(message);
+    }
+}
+```
+## Checked vs Unchecked Exceptions
+checked exceptions need to be in try catch blocks, unchecked do not. If you add throws to a method signature you can list any checked exceptions and throw them without a try catch block.
+```java
+try{
+    throw new MyCheckedException("this message shows when the exception is thrown");
+} catch (MyCheckedException exception){
+    exception.printStackTrace();
+}
+
+if (2 > 1){
+    throw new MyUncheckedException("you don't need to handle this with a try catch");
+}
+
+public static void throwsMethod() throws MyCheckedException{
+    throw new MyCheckedException("I can do this without a try catch block");
+}
+```
+
+## Wrapper Classes
+Wrapper classes are the object versions of primitives. There are methods that require the use of objects for them to function: these wrapper classes allow primitives to be passed in as arguments. Java can handle much of this logic for you. Also, Wrapper Classes have helpful methods for performing operations on primitive data (like converting a String number into an int number)
+
+Autoboxing
+- Java's automatic conversion of a primitives to an object, or vice versa
+
+Boxing
+- converting a primitive to a wrapper class
+
+Unboxing
+- converting a wrapper class to a primitive
+
+```java
+public static void main(String[] args){
+    int x = 5;
+    needObject(x)// will print 10, x will be autoboxed into its wrapper class
+}
+public static void needObject(Integer num){
+    System.out.print(num + 5);
+}
+```
