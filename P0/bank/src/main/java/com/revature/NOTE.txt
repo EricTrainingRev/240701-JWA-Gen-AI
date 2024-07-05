@@ -1,0 +1,2 @@
+the package com.revature (in this example) is the highest level in the file structure
+that source code should exist.
