@@ -52,7 +52,7 @@ From here we can add packages and imports, expanding the application into a set 
     - the jdk contains developer tools (compiler, debugger, documentation tools) that allow for the creation of Java apps
 
 ## Primitive data types
-Java handles two kinds of data types: primitives and references. Primitives are variables that store simple values. There are eight in Java.
+Java handles two kinds of datatypes: primitives and references. Primitives are variables that store simple values. There are eight in Java.
 - Integer types: **byte**, **short**, **int**, and **long** (42)  
 - Floating-point types: **float**, and **double** (3.1415)  
 - Logical types: **boolean** (true)  
@@ -78,13 +78,6 @@ String txtVar = "Hello World";
 - Cannot begin with a number
 - Cannot be a reserved Java keyword
 
-common conventions:
-- constant values: UPPERCASE
-- class/interface names: PascalCase
-    - unique words start with upper case letter, no space or special character between words
-- others: camelCase
-    - first unique word starts with lower case letter, all following words start with upper case letter, no special characters between words
-
 ## class/object
 |class|object|
 |-----|------|
@@ -106,9 +99,21 @@ public class myClass {
 - the stack is where local variables references are stored
     - a new stack is created for each method invocation
 
+## Object-Oriented Programming
+Although Java accommodates several paradigms, OOP is the foundation for most applications. In OOP, a program is organized into objects encapsulating related fields (representing its *state*) and methods (usually to control that state or perform related functions). When defining objects, Java reserves the keyword *class* (not to be confused with the *.class* file extension) which serves as their blueprint. An object in Java represents an instance in memory of a class, and also every class implicitly inherits from the *Object* superclass which provides useful convenience methods such as *equals()* and *toString()*. Java popularized several 'Pillars' of OOP design theory. While the numbers vary between OOP languages, Java focuses on four:
+
+- **Abstraction** By simplifying objects to a set of useful features, we hide irrelevant details, reduce complexity, and increase efficiency. Abstraction is important at all levels of software and computer engineering, but essential to designing useful objects. Complicated real-world objects are reduced to simple representations.
+
+- **Encapsulation** Objects should group together related variables and functions and be in complete control over them. So the state of an object should only change, if ever, through the object itself. Also known as data hiding, because the object has sole responsibility for its fields, and no outside object or function should interfere.
+
+- **Inheritance** Code reuse is an important principle of programming (DRY - Don't Repeat Yourself), and new classes can reuse code from existing ones. This establishes a superclass-subclass (or parent-child) relationship where the derived classes inherit (and sometimes change) fields and methods from its parent.
+
+- **Polymorphism** With inheritance, an object of a derived class can be referenced as instances of its parent class. This provides flexibility when invoking inherited methods with varying implementations in derived classes.
+
+
 ## methods & parameters
 ```java
-class myClass{
+class MyClass{
     public static void myBasicMethod(){
         System.out.println("This is where the code for the method goes");
     }
@@ -153,9 +158,10 @@ public class MyClass{
 1. Class/static scope
     - available to all instances of the class by invoking the class itself
     - the static keyword makes a variable class scope
+    - class scope methods/variables can not interact with instance variables/methods
 2. Instance/object scope
     - available to the instance of an object
-    - **this** keyword is used to interact with an instance variable
+    - this keyword is used to interact with an instance variable
     - instance variables do not cross objects: they are unique per object
 3. Method scope
     - available within the method it is instantiated in
@@ -163,7 +169,6 @@ public class MyClass{
 4. Block scope
     - available within the {} it is instantiated in
     - usually your control-flow statements
-
 ``` java
 public class MyClass{
 
@@ -172,13 +177,13 @@ public class MyClass{
 
     public MyClass(String objectName){
         int addOneToClass = 1; // method scope: only available within this method
-        MyClass.classCount += addOneToClass; // referenced by the class name
-        this.objectName = objectName; // referenced by the "this" keyword
+        MyClass.classCount += addOneToClass;
+        this.objectName = objectName;
     }
 
     public static void countClass(){
         if (MyClass.classCount > 0){
-            System.out.println(MyClass.classCount);
+            System.out.println(myClass.classCount);
         } else {
             int zero = 0; //block scope: only exists here in the code
             System.out.println(zero);
@@ -186,98 +191,6 @@ public class MyClass{
     }
 }
 ```
-
-## String API
-Strings are immutable objects in Java. They have a pool (string pool) in the heap that allows for multiple references to point to the same String object. This makes them work a little differently from other objects
-```java
-// these two strings point to the same object in memory, return true when the .equals() method is called
-String myString = "this is a valid way of declaring a string";
-String myStringTwo = "this is a valid way of declaring a string";
-System.out.println(myString.equals(myStringTwo)); // returns true
-
-// using the new keyword will create a new instance of the string in the pool
-String myString = "this is a valid way of declaring a string";
-String myStringTwo = new String("this is a valid way of declaring a string");
-System.out.println(myString.equals(myStringTwo)); // returns true, compares content
-System.out.println(myString == myStringTwo);// returns false, compares memory location of objects 
-```
-
-## control flow
-these keywords control the flow of logic and code execution in your program
-```java
-// if statements only run when their indicated logic is achieved
-int x = 5;
-if(x == 5){
-    System.out.println("this is true");
-}
-
-// you can include an else statement that will run if your if block does not run
-int x = 5;
-if(x==6){
-    System.out.println("this is true");
-} else {
-    System.out.println("this is not true");
-}
-
-// you can utilize else if statements to add more potential triggers
-int x = 7
-if(x==5){
-    System.out.println("this is not true, so it will not trigger")
-} else if (x == 7){
-    System.out.println("this block of code will trigger because x = 7")
-} else if (x == 8){
-    System.out.println("This also will not trigger")
-} else {
-    System.out.println("this will not trigger because the else if is going to trigger")
-}
-
-// for loops re-execute the same block of code until their condition is met
-for (int x = 0; x < 10; x++){ //(declaration;condition;declaration)
-    System.out.println(x);
-}
-
-// enhanced for loops can iterate through an object that implements the iterable interface
-int[] myInts = new int[]{1,2,3,4,5};
-for (int num : myInts){
-    System.out.println(num);
-}
-
-// while loops test a condition and execute code in a loop till the condition is no longer true
-int x = 0;
-while (x < 10){
-    System.out.println(x);
-    x++;
-}
-
-// do while loops work the same as above, except the code executed in the do executes at least once
-int x = 10
-do{
-    System.out.println("this prints once despite x !< 10")
-} while (x < 10);
-
-// switch statements take a variable and execute code based upon the given value
-// can take in a byte, short, char, int, enum, and string. use break to prevent cascading code
-int x = 10;
-switch(x){
-    case 1:{
-        System.out.println("this will not show because x = 10");
-        break;
-    }
-    case 5:{
-        System.out.println("this also does not show");
-        break;
-    }
-    case 10:{
-        System.out.println("this will show because x = 10");
-        break;
-    }
-    default:{
-        System.out.println("this shows if no other condition is met");
-        break;
-    }
-}
-```
-
 ## access modifiers
 |modifier|access|
 |-------|-------|
@@ -285,7 +198,6 @@ switch(x){
 |protected|within same package and sub-classes|
 |default (no keyword)|within same package|
 |private|within same class|
-
 ## packages & imports
 packages are a way of organizing our Java code. The naming convention is to write a reverse web domain separating words with periods:
 ```java 
@@ -298,7 +210,86 @@ import packagename.classname
 
 // fully qualified class names include the package
 packagename.classname.method()
+```
+## Collection API
+![Collection API](CollectionHierarchy.png)
 
+## Generics
+When passing objects into methods and data structures, a developer can overload or extend for its specific type or cast the object up and down its inheritance hierarchy. In contrast a generic type improves code reuse and type safety, reducing code by allowing methods and data structures to accept any type without risking dynamic runtime exceptions. Generic type parameters act as placeholders in a method signature while diamond operators specify the type for the compiler to enforce at compile time:
+```java
+ArrayList<String> list = new ArrayList<>();
+public <T> String genericToString(T a) {   
+    return a.toString();
+}
+public <T, E> String genericToStringCat(T a, E b) {   
+    return a.toString() + b.toString();
+}
+```
+The type parameters T and E will be replaced by the compiler through type erasure:
+```java
+String s1 = genericToString(1);
+String s2 = genericToString("Hello", 3.5);
+```
+
+## Collections Framework
+Java's collections framework provides an API and reference implementations for common data structures
+- **List** is an ordered collection of elements. A user has the ability to place an element anywhere in the list. The elements are accessible by their index. Unlike **Set**, **List** typically allows for duplicate elements such that element1.equals(element2). In addition to duplicates, **List** allow for multiple null elements to be stored.  
+  
+- **Set** is a collection of non duplicate elements meaning there will never exist a situation where element1.equals(element2). In addition to this, it is implied that there can only exist one null element due to the no duplicates rule. Some implementations also use **SortedSet** for proper ordering.
+- **Queue** is a collection of elements who in essence cannot be iterated, instead the **Queue** follows the **FIFO** (First In First Out) rule. When an element is added to the **Queue** it is placed at the back and when an element is pulled it is pulled from the from the front (index :0).  
+- **Deque** extends **Queue** but augments the ability to insert and remove elements at either end. The name is short for "Double Ended Queue" and is pronounced "Deck". Can be used as a LIFO (Last In First Out) Stack.
+- **Map** is an interface which stores data with a key. A map cannot contain duplicate keys; each key can map to at most one value. **Map** can be visualized like a dictionary where only one word is paired with one definition. Unlike most other interfaces in the Collections Framework, it does not implement Collection nor Iterable. 
+
+### Comparable vs Comparator
+Comparable is a functional interface used to define a 'natural ordering' between instances of a class, commonly used by sorted collections such as TreeSet.
+Comparator is another functional interface used in a dedicated utility class that can compare two different instances passed to it. It can be passed to a sort method, such as Collections.sort() or Arrays.sort(), or to sorted collections.
+For example, to automatically sort a TreeSet of type Person according to age. We can either make the object class comparable or pass the constructor a comparator.
+
+#### Comparable
+```java
+class Person implements Comparable<Person>{
+	int age;
+ 
+	Person(int age) {
+		this.age = age;
+	}
+ 
+	@Override
+	public int compareTo(Person o) {
+		return o.age - this.age;
+	}
+}
+ 
+public static void main(String[] args) {
+	TreeSet<Person> persons = new TreeSet<Person>();
+	persons.add(new Person(43));
+	persons.add(new Person(25));
+	persons.add(new Person(111));
+}
+```
+#### Comparator
+```java
+class Person {
+	int age;
+ 
+	Person(int age) {
+		this.age = age;
+	}
+}
+ 
+class PersonAgeComparator implements Comparator<Person> {
+	@Override
+	public int compare(Person a, Person b) {
+		return a.age - b.age;
+	}
+}
+ 
+public static void main(String[] args) {
+	TreeSet<Person> persons = new TreeSet<Person>(new PersonAgeComparator());
+	persons.add(new Person(43));
+	persons.add(new Person(25));
+	persons.add(new Person(111));
+}
 ```
 
 ## Non-Access Modifiers
@@ -363,6 +354,34 @@ public interface MyInterfaceStuff{
 }
 ```
 
+## Functional Interfaces and Lambdas
+Functional Interfaces are interfaces with a single method that is used to create lambda templates.
+```java
+@FunctionalInterface // the annotation informs the compiler the interface is a functional interface
+interface MyFunctionalInterface{
+    // this is the abstract method we will use as our lambda template
+    int mathematics(int num);
+}
+```
+Lambdas are a way to do functional programming in Java (sorta). Instead of tying a method to a class it (sorta) stands alone. You can call lambdas without needing to also call a class. Collections have a built in system for a lambda: the forEach() method
+```java
+List<String> names = new ArrayList<>();
+names.add("Billy");
+names.add("Bob");
+names.add("Jill");
+names.forEach(name -> System.out.println(name)); // notice name requires no type declaration
+```
+you can also create your own lambdas by creating functional interfaces and implementing their single abstract method
+```java
+@FunctionalInterface
+interface MyFunctionalInterface{
+    int mathematics(int num);
+}
+MyFunctionalInterface addFive = num -> num + 5;
+System.out.println(addFive.mathematics(5)); // this will print 10
+MyFunctionalInterface subtractFive = num -> num - 5;
+System.out.println(subtractFive.mathematics(5)); // this will print 0
+```
 ## Exception hierarchy
 ![Exception Hierarchy](ExceptionHierarchy.jpg)
 ## Exception Handling/Declaring
@@ -405,8 +424,23 @@ public static void throwsMethod() throws MyCheckedException{
 }
 ```
 
+## String API
+Strings are immutable objects in Java. They have a pool (string pool) in the heap that allows for multiple references to point to the same String object. This makes them work a little differently from other objects
+```java
+// these two strings point to the same object in memory, return true when the .equals() method is called
+String myString = "this is a valid way of declaring a string";
+String myStringTwo = "this is a valid way of declaring a string";
+System.out.println(myString.equals(myStringTwo)); // returns true
+
+// using the new keyword will create a new instance of the string in the pool
+String myString = "this is a valid way of declaring a string";
+String myStringTwo = new String("this is a valid way of declaring a string");
+System.out.println(myString.equals(myStringTwo)); // returns true, compares content
+System.out.println(myString == myStringTwo);// returns false, compares memory location of objects 
+```
+
 ## Wrapper Classes
-Wrapper classes are the object versions of primitives. There are methods that require the use of objects for them to function: these wrapper classes allow primitives to be passed in as arguments. Java can handle much of this logic for you. Also, Wrapper Classes have helpful methods for performing operations on primitive data (like converting a String number into an int number)
+Wrapper classes are the object versions of primitives. There are methods that require the use of objects for them to function, these wrapper classes allow primitives to be passed in as arguments. Java can handle much of this logic for you:
 
 Autoboxing
 - Java's automatic conversion of a primitives to an object, or vice versa
@@ -416,7 +450,6 @@ Boxing
 
 Unboxing
 - converting a wrapper class to a primitive
-
 ```java
 public static void main(String[] args){
     int x = 5;
@@ -426,3 +459,62 @@ public static void needObject(Integer num){
     System.out.print(num + 5);
 }
 ```
+
+# Maven
+Maven is a Java "build" tool that allows you to manage your Java projects, some of the common use cases are:
+- add third party libraries to your application
+- package your application for distribution
+- facilitate your software tests
+
+## Maven Repository
+A central location where you can download libraries and frameworks for your Java application. These are managed by your POM.xml, if you create maven project. There is a local maven repository ($HOME/.m2/repository) maven will check first, then it will check the online repository for artifacts. If found, it will download the library for your project.
+
+## Page Object Model
+The Project Object Model (.xml) is how Maven knows how to build your project. It includes your dependencies, plugins, build information, and other resources needed to package and manage your application
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--the project tag is the root tag-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--determins what pom version to use-->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>examplework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--project specific settings-->
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <!--This is where you put your various dependencies. They include groupID, artifactId, and version-->
+    <dependencies>
+        <!--each dependency goes inside its own tags-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+</project>
+```
+
+## Project Coordinates
+These are various identifiers for your Maven project:
+- group-id: The group, company, team, organization, project, or other group. for example: "com.revature"
+- artifact-id: A unique identifier under groupId that represents a single project. for example: "myproject"
+- version: A specific release of a project. Projects in development usually include "SNAPSHOT"
+- packaging: The type of project, defaulting to jar, describing the packaged output produced by a project.
+
+## Maven Life Cycle
+These are the phases of a Maven build life cycle, note that many of the later phases require using additional software to work properly:
+1. Validate => project is correct and all necessary information is available
+2. Compile => compiles project source code
+3. Test => tests all compiled code
+4. Package => packages all compiled code to WAR/JAR file
+5. Integration => performs all integration tests on WAR/JAR
+6. Verify => runs checks on the results of integration tests
+7. Install => installs WAR/JAR to local repository
+8. Deploy => copies final WAR/JAR to the remote repository
