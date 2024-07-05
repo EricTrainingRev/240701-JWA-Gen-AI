@@ -25,7 +25,11 @@ public class InMemoryUser implements UserDao{
 
     @Override
     public User createUser(User newUserCredentials) {
+        // since the service layer handles verifying the user credentials follow business and software
+        // rules we can assume at this point they are valid and add them to the database without further
+        // checks
         users.add(newUserCredentials);
+        // return the user to the service layer so the username can be added to the controlMap
         return newUserCredentials;
     }
 

@@ -45,25 +45,31 @@ public class UserController {
                     registerNewUser();
                     break;
                 case "2":
+                    // If the user provides correct credentials their username is saved in the controlMap
+                    // to be used in the main method for facilitating getting the correct bank account information
                     controlMap.put("User", login().getUsername());
                     break;
                 case "q":
                     System.out.println("Goodbye!");
+                    // set the loopApplication boolean to false to exit the while loop in the main method
                     controlMap.put("Continue Loop", "false");
             }
+        // this exception triggers if the user enters invalid credentials
         } catch(LoginFail exception){
             System.out.println(exception.getMessage());
         }
     }
 
     public void registerNewUser(){
+        // this either returns details on the new account or returns a failure message
+        // TODO: generic runtime exception is thrown, make it more specific
         User newCredentials = getUserCredentials();
-        // TODO: get result and tell user
         User newUser = userService.validateNewCredentials(newCredentials);
         System.out.printf("New account created: %s", newUser);
     }
 
     public User login(){
+        // we can re-use getUserCredentials() here to avoid rewriting the same logic
         return userService.checkLoginCredentials(getUserCredentials());
     }
 

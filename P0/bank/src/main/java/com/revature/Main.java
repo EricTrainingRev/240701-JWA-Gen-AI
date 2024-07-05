@@ -34,6 +34,8 @@ public class Main {
             Map<String, String> controlMap = new HashMap<>();
             controlMap.put("Continue Loop", "true");
             while(Boolean.parseBoolean(controlMap.get("Continue Loop"))){
+                // we pass the controlMap into the promptUserForService to get the potential user data and
+                // check it in the next if statement
                 userController.promptUserForService(controlMap);
                 if(controlMap.containsKey("User")){
                     System.out.printf("Banking stuff for %s can happen here! Press any key to continue", controlMap.get("User"));
