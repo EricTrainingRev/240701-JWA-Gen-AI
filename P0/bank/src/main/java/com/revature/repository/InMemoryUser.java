@@ -25,7 +25,8 @@ public class InMemoryUser implements UserDao{
 
     @Override
     public User createUser(User newUserCredentials) {
-        return null;
+        users.add(newUserCredentials);
+        return newUserCredentials;
     }
 
     @Override

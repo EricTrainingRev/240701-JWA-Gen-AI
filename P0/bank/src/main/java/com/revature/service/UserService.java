@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.entity.User;
+import com.revature.exception.LoginFail;
 import com.revature.repository.UserDao;
 
 import java.util.List;
@@ -56,6 +57,17 @@ public class UserService {
         // 3.2 inform user of results
         // we can use an exception to return an error message if the credentials are not persisted
         throw new RuntimeException("placeholder for custom exception");
+    }
+
+    public User checkLoginCredentials(User credentials){
+        for (User user : userDao.getAllUsers()){
+            boolean usernameMatches = user.getUsername().equals(credentials.getUsername());
+            boolean passwordMatches = user.getPassword().equals(credentials.getPassword());
+            if (usernameMatches && passwordMatches){
+                return credentials;
+            }
+        }
+        throw new LoginFail("Credentials are invalid: please try again");
     }
 
 

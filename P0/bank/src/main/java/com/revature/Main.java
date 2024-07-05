@@ -6,6 +6,8 @@ import com.revature.repository.InMemoryUser;
 import com.revature.repository.UserDao;
 import com.revature.service.UserService;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -28,8 +30,22 @@ public class Main {
             // this userController will handle receiving and returning data to the user
             // the controller needs access to the service in order to transfer data to the service layer
             UserController userController = new UserController(scanner, userService);
-            // promptUserForService starts the whole process
-            userController.promptUserForService();
+            // this Map will update the loopApplication boolean and store the logged-in user data
+            Map<String, String> controlMap = new HashMap<>();
+            controlMap.put("Continue Loop", "true");
+            while(Boolean.parseBoolean(controlMap.get("Continue Loop"))){
+                userController.promptUserForService(controlMap);
+                if(controlMap.containsKey("User")){
+                    System.out.printf("Banking stuff for %s can happen here! Press any key to continue", controlMap.get("User"));
+                    scanner.nextLine();
+                    /*
+                        NOTE: currently the User information has no means of being removed: when you implement a log out
+                        functionality the controlMap needs to have the User key/value pair removed:
+                        - controlMap.remove("User");
+                     */
+                }
+            }
+
         }
     }
 }
