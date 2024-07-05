@@ -12,7 +12,12 @@ import java.util.List;
  */
 public interface UserDao {
 
-    // same as: public abstract User createUser(User newUserCredentials);
+    /*
+        Something to keep in mind: when coding to the interface (setting the type
+        of an object to an interface it implements) the object that is created will
+        have access to its custom fields but NOT its custom methods (non-override methods).
+        If you want an action to be performed via method it must be declared in the interface
+     */
     User createUser(User newUserCredentials);
     List<User> getAllUsers();
 

@@ -5,15 +5,45 @@ import com.revature.repository.UserDao;
 
 import java.util.List;
 
+/*
+    This UserService will enforce the software requirements of the bank app:
+        registration:
+            - checking username and password length (<=30)
+            - checking username is unique
+        login
+            - only allowing correct credentials to progress into the app
+        logout
+            - removing any user identifying information and returning to login/register view
+ */
+
 public class UserService {
 
+    /*
+        We know the end goal is to persist data in an SQL database, but that is not till
+        week 2. For the time being we are using a temp InMemoryUser mock class so development
+        can progress. To make the transition from mock to real we are going to set the type
+        of the dao field to the interface UserDao, which is implemented by our InMemoryUser
+        class. When we get to implementing the SQL Dao all we will need to do to switch the
+        implementation is change what version of the Dao we provide the service, which makes
+        refactoring SIGNIFICANTLY simpler
+     */
     private UserDao userDao;
-
+    /*
+        the service needs to facilitate data between the controller layer and the
+        repository layer, so we need to provide a dao to the service so database
+        operations can be performed after business and software requirements are
+        verified
+     */
     public UserService(UserDao userDao){
+        /*
+            this is a valid assignment whether we use the in-memory option or
+            a sql implementation
+         */
         this.userDao = userDao;
     }
 
     // this will be our entrypoint into the UserService registration functionality
+    // to make the flow of the logic easier the code is encapsulated in helper methods
     public User validateNewCredentials(User newUserCredentials){
         // 1. check if lengths are correct
         if (checkUsernamePasswordLength(newUserCredentials)){
@@ -24,6 +54,7 @@ public class UserService {
             }
         }
         // 3.2 inform user of results
+        // we can use an exception to return an error message if the credentials are not persisted
         throw new RuntimeException("placeholder for custom exception");
     }
 

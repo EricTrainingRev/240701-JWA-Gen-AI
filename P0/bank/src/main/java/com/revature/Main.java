@@ -2,6 +2,9 @@ package com.revature;
 
 import com.revature.controller.UserController;
 import com.revature.entity.User;
+import com.revature.repository.InMemoryUser;
+import com.revature.repository.UserDao;
+import com.revature.service.UserService;
 
 import java.util.Scanner;
 
@@ -17,7 +20,15 @@ public class Main {
          */
 
         try(Scanner scanner = new Scanner(System.in)){
-            UserController userController = new UserController(scanner);
+            // this userDao will handle accessing and persisting User data
+            UserDao userDao = new InMemoryUser();
+            // this userService will handle validating User data follows software/business rules
+            // the service needs access to the dao in order to transfer data to the repository layer
+            UserService userService = new UserService(userDao);
+            // this userController will handle receiving and returning data to the user
+            // the controller needs access to the service in order to transfer data to the service layer
+            UserController userController = new UserController(scanner, userService);
+            // promptUserForService starts the whole process
             userController.promptUserForService();
         }
     }
