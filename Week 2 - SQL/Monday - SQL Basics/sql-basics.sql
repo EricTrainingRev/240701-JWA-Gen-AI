@@ -46,9 +46,27 @@ insert into people (name, age) values ('Teddy', 123);
 select * from people;
 
 -- if you want specific information you can indicate what columns of data you want returned
+select name from people;
+select age from people;
 
+-- if you need to filter the information returned in the result set you can use the
+-- 'where' keyword and provide a filter
+select * from people where name = 'Teddy';
+select * from people where age < 50;
+-- % used for 0 or more characters, _ wildcard for a single character
+select * from people where name like 'S%';
 
+-- UPDATING
+-- to update one or more records we use the 'update' keyword
+update people set name = 'Miranda' where age = 50;
+update people set age = 32 where name = 'Sally';
 
+-- you can do batch updating as well, this will update all records in your table
+update people set age = 24;
+
+-- DELETING
+-- to delete data from a table you use the 'delete' keyword
+delete from people where age = 24;
 
 
 
