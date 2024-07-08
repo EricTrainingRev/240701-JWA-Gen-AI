@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class DatabaseScriptRunner {
@@ -40,7 +39,7 @@ public class DatabaseScriptRunner {
                 // the \\R character is a more robust newline indicator
                 // this means new line, carriage return, and one or two other
                 // characters are referenced by it
-                String[] statements = sql.split(";\\R");
+                String[] statements = sql.split(";");
                 // for each statement we need executed we make a Statement object and call
                 // the executeUpdate method, passing in our sql String statement
                 for(String statement : statements){

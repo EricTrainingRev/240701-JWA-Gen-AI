@@ -1,8 +1,7 @@
 package com.revature;
 
 import com.revature.controller.UserController;
-import com.revature.entity.User;
-import com.revature.repository.InMemoryUser;
+import com.revature.repository.SqliteUserDao;
 import com.revature.repository.UserDao;
 import com.revature.service.UserService;
 
@@ -23,7 +22,7 @@ public class Main {
 
         try(Scanner scanner = new Scanner(System.in)){
             // this userDao will handle accessing and persisting User data
-            UserDao userDao = new InMemoryUser();
+            UserDao userDao = new SqliteUserDao();
             // this userService will handle validating User data follows software/business rules
             // the service needs access to the dao in order to transfer data to the repository layer
             UserService userService = new UserService(userDao);
