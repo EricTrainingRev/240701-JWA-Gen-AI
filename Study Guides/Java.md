@@ -136,6 +136,11 @@ public class MyClass{
         // every constructor calls super() (or this()) as its first line of code, whether you place it or not
     }
 
+    /*
+        methods in Java support "overloading": this is where you have the same method name but different parameters. You can also
+        change the return type, but it must be accompanied by adjusted parameters. Below are some examples of overloading the constructor
+    */
+
     // this is a constructor that only initializes one variable
     public MyClass(int myInt){
         this.myInt = myInt;
@@ -234,12 +239,69 @@ String s2 = genericToString("Hello", 3.5);
 ## Collections Framework
 Java's collections framework provides an API and reference implementations for common data structures
 - **List** is an ordered collection of elements. A user has the ability to place an element anywhere in the list. The elements are accessible by their index. Unlike **Set**, **List** typically allows for duplicate elements such that element1.equals(element2). In addition to duplicates, **List** allow for multiple null elements to be stored.  
-  
+```java
+// ArrayLists are arrays that can dynamically resize. Fast searching, slow adding
+List<Integer> arrayList = new ArrayList<>();
+    arrayList.add(1);
+    arrayList.add(2);
+    arrayList.add(3);
+    arrayList.add(4);
+    arrayList.add(5);
+
+// LinkedLists implement List and Queue. Composed of nodes that reference the next/previous node (double linked). Fast adding, slow searching
+List<Integer> linkedList = new LinkedList<>();
+    linkedList.add(1);
+    linkedList.add(2);
+    linkedList.add(3);
+    linkedList.add(4);
+    linkedList.add(5);
+```
 - **Set** is a collection of non duplicate elements meaning there will never exist a situation where element1.equals(element2). In addition to this, it is implied that there can only exist one null element due to the no duplicates rule. Some implementations also use **SortedSet** for proper ordering.
+```java
+// HashSets are backed by HashMap, fast insertion and search. Not indexable
+Set<String> hashSet = new HashSet<>();
+    hashSet.add("Billy");
+    hashSet.add("Sally");
+    hashSet.add("Slagathor");
+
+// TreeSets maintain order. insertion and removal is slow because of ordering. No null allowed
+Set<String> treeSet = new TreeSet<>();
+    treeSet.add("Timmy");
+    treeSet.add("Betty");
+    treeSet.add("Cthulhu");
+```
 - **Queue** is a collection of elements who in essence cannot be iterated, instead the **Queue** follows the **FIFO** (First In First Out) rule. When an element is added to the **Queue** it is placed at the back and when an element is pulled it is pulled from the from the front (index :0).  
 - **Deque** extends **Queue** but augments the ability to insert and remove elements at either end. The name is short for "Double Ended Queue" and is pronounced "Deck". Can be used as a LIFO (Last In First Out) Stack.
-- **Map** is an interface which stores data with a key. A map cannot contain duplicate keys; each key can map to at most one value. **Map** can be visualized like a dictionary where only one word is paired with one definition. Unlike most other interfaces in the Collections Framework, it does not implement Collection nor Iterable. 
+```java
+// ArrayDeque allows for adding to the start or end of the queue. It has some useful methods
+// pop()
+// push()
+// peekFirst()
+// peekLast()
+// pollFirst()
+// pollLast()
+// offerFirst()
+// offerLast()
+Deque<Integer> queue = new ArrayDeque<>();
+    queue.add(2);
+    queue.addFirst(1);
+    queue.add(3);
+    queue.add(4);
 
+// PriorityQueue orders by priority instead of FIFO. Null is not allowed, natural ordering does not allow non-comparable objects
+```
+- **Map** is an interface which stores data with a key. A map cannot contain duplicate keys; each key can map to at most one value. **Map** can be visualized like a dictionary where only one word is paired with one definition. Unlike most other interfaces in the Collections Framework, it does not implement Collection nor Iterable. 
+```java
+// HashMaps are unordered key value pairs, fast insertion and deletion
+Map<Integer,String> myHashMap = new HashMap<>(); // must indicate what the key type and value type are
+myHashMap.put(1,"first value");
+myHashMap.put(2,"Second value");
+
+// TreeMaps are ordered key value pairs, slower insertion and deletion
+Map<Integer, String> myTreeMap = new TreeMap<>();
+myTreeMap.put(1,"First Value");
+myTreeMap.put(2, "Second Value");
+```
 ### Comparable vs Comparator
 Comparable is a functional interface used to define a 'natural ordering' between instances of a class, commonly used by sorted collections such as TreeSet.
 Comparator is another functional interface used in a dedicated utility class that can compare two different instances passed to it. It can be passed to a sort method, such as Collections.sort() or Arrays.sort(), or to sorted collections.
@@ -413,6 +475,8 @@ try{
     throw new MyCheckedException("this message shows when the exception is thrown");
 } catch (MyCheckedException exception){
     exception.printStackTrace();
+} finally{
+    // Anything you want to happen, whether an exception is caught or not, can go in a finally block
 }
 
 if (2 > 1){
@@ -469,7 +533,7 @@ Maven is a Java "build" tool that allows you to manage your Java projects, some 
 ## Maven Repository
 A central location where you can download libraries and frameworks for your Java application. These are managed by your POM.xml, if you create maven project. There is a local maven repository ($HOME/.m2/repository) maven will check first, then it will check the online repository for artifacts. If found, it will download the library for your project.
 
-## Page Object Model
+## Project Object Model
 The Project Object Model (.xml) is how Maven knows how to build your project. It includes your dependencies, plugins, build information, and other resources needed to package and manage your application
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -518,3 +582,4 @@ These are the phases of a Maven build life cycle, note that many of the later ph
 6. Verify => runs checks on the results of integration tests
 7. Install => installs WAR/JAR to local repository
 8. Deploy => copies final WAR/JAR to the remote repository
+
