@@ -21,6 +21,12 @@ public class Main {
          */
 
         try(Scanner scanner = new Scanner(System.in)){
+            /*
+                NOTE: we have two candidates to provide a UserDao implementation: SqliteUserDao and
+                InMemoryUser. Because we have "coded to the Interface" by setting the type of our dao
+                to the shared interface, we can freely swap implementation options with minimal
+                refactoring needed
+            */
             // this userDao will handle accessing and persisting User data
             UserDao userDao = new SqliteUserDao();
             // this userService will handle validating User data follows software/business rules

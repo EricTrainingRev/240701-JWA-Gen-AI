@@ -15,6 +15,9 @@ public class SqliteUserDao implements UserDao{
         // need sql statement
         // need a connection object
         // need to return the newly generated user
+
+        // in PreparedStatement we can pass in the data we want to inject into our sql
+        // by using ? as a placeholder for each value we want to inject into the query
         String sql = "insert into user values (?, ?)";
         try(Connection connection = DatabaseConnector.createConnection()){
             // we can use a PreparedStatement to control how the user data is injected
@@ -47,16 +50,17 @@ public class SqliteUserDao implements UserDao{
         // need a list of users to return
         String sql = "select * from user";
         try(Connection connection = DatabaseConnector.createConnection()){
-            // we can use a statement object to execute our query
+            // we can use a Statement object to execute our query
             Statement statement = connection.createStatement();
-            // if we use executeQuery we will get a result set object back with the records found
+            // if we use executeQuery we will get a ResultSet object back with the records found
             ResultSet resultSet = statement.executeQuery(sql);
-            // we make our list of users we will fill with found data
+            // we make our List of users we will fill with found data
             List<User> users = new ArrayList<>();
-            // loop through the result set using the next() method
+            // loop through the ResultSet using the next() method
             while(resultSet.next()){
                 // create a User object, set its properties to whatever is found in the database, and add it to the list
                 User userRecord = new User();
+                // you can use the column name or the column index to get the data (indexing starts at 1)
                 userRecord.setUsername(resultSet.getString("username"));
                 userRecord.setPassword(resultSet.getString("password"));
                 users.add(userRecord);

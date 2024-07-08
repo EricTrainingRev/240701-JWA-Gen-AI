@@ -9,6 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Stream;
 
+/*
+    This class is used to execute the sql script located in the main resources directory. It splits
+    the sql script into individual statements and executes them one at a time, committing all statements
+    at the end of the script
+*/
+
 public class DatabaseScriptRunner {
 
     public static void main(String[] args) {
