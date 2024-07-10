@@ -124,6 +124,22 @@ class MyClass{
 // myBasicMethod = name of the method
 // () = any parameters for the method are listed here
 ```
+you can make use of variable arguments when you need your method to accept one or more arguments for your method to work, but you don't know the exact amount. Your arguments are stored in an array and can be accessed through that array. If you declare a var arg it must be the last parameter of the method
+```java
+public class Main{
+    public static void main(String[] args){
+        count("First Parameter",1,2,3,4,5);
+    }
+
+    // use triple dots after the type to indicate a variable argument
+    public static void count(String word, int... nums){
+        System.out.println(word);
+        for (int x = 0; x < nums.length; x++){
+            System.out.println(nums[x]);
+        }
+    }
+}
+```
 ## Constructors
 Constructors are special methods that determine how classes are to be instantiated as objects. They handle the build logic
 ```java
