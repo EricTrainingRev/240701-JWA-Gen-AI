@@ -44,7 +44,16 @@ select * from names where person_id = 1;
 --delete is used to remove data from a table
 delete from names where person_id = 1;
 ```
-###
+### Data Query Language
+```sql
+--select is used to get data from a table. This is sometimes categorized under DQL separately from DML
+select * from names where person_id = 1;
+
+-- join and set operations fall under DQL
+select * from players join teams on players.team_id = teams.team_id;
+
+select team_id from teams union select team_id from players;
+```
 ### Data Control Language (DCL)
 ```sql
 --these commands manage users and privileges on the database

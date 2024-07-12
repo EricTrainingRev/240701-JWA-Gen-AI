@@ -109,6 +109,8 @@ Although Java accommodates several paradigms, OOP is the foundation for most app
 - **Inheritance** Code reuse is an important principle of programming (DRY - Don't Repeat Yourself), and new classes can reuse code from existing ones. This establishes a superclass-subclass (or parent-child) relationship where the derived classes inherit (and sometimes change) fields and methods from its parent.
 
 - **Polymorphism** With inheritance, an object of a derived class can be referenced as instances of its parent class. This provides flexibility when invoking inherited methods with varying implementations in derived classes.
+    - Overloading is changing the parameters of a function but leaving the same name (can also change the return type)
+    - Overriding is changing the implementation of an inherited method
 
 
 ## methods & parameters
