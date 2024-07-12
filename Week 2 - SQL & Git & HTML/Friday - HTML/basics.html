@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Many web pages will have some kind of header to announce what is on the page -->
+     <h1 id="Something">This is a very large header</h1>
+     <h6 id="Something">This is a much smaller header</h6>
+     <!-- 
+        All elements we can define in our html are either going to be in-line or block elements
+        If an element is a block element (like the headers above) then the default behavior of the
+        browser is to render the content on a new line. On the other hand, if your elements are
+        in-line elements then they will be rendered on the same line 
+     -->
+    <input type="text" id="Something"><input type="text" id="Something">
+     <!-- 
+        Notice that these input tags don't have a second closing tag associated with them:
+        Some tags like the header options above will require you to use opening and closing tags
+        while others like inputs only need to initial tag to work properly
+      -->
+
+      <!-- 
+        We can change attributes in our elements by setting new values for the attributes. For instance,
+        input elements can have a specific type of data they are meant to work with indicated by setting
+        the value of the "type" attribute. The text options above make it so we can enter any text input
+        into the field, but the number option below only allows for numeric expression (there are a lot
+        more types than just text, number, and file)
+      -->
+      <input type="number" id="Something">
+      <input type="file">
+    
+      <!-- 
+        There are an incredible amount of attributes you can apply to elements in a web page
+        that can change the way the browser renders the content, but there are a few attributes that
+        are going to be of primary interest for us
+
+        id      -> this attribute is meant to be used to provide a unique identifier for the element
+        name    -> this attribute is meant for internal identification, often when providing labels for your other elements
+        style   -> this attribute is used to change the way the browser renders the content
+        class   -> this attribute is used when you want one or more elements to share styling options or to be accessed as a group via JavaScript
+      -->
+    <label for="usernameInput">Please enter your username</label>
+    <input type="text" name="usernameInput">
+    <p style="text-align: center;">This holds text, the way the text is rendered is adjusted by the style attribute</p>
+    <p class="InfoSection">This paragraph section is my info section</p>
+</body>
+</html>

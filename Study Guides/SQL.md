@@ -28,6 +28,7 @@ drop table simple_table;
 --these commands are not reversible: there is no option to do a rollback
 ```
 ### Data Manipulation Language (DML)
+NOTE: many people classify the fifth sub language, Data Query Language, as a subset of DML
 ```sql
 --these are the CRUD operations (Create, Read, Update, Delete)
 
@@ -37,12 +38,13 @@ insert into names values(default, 'Billy', 'Bob');
 --update is used to change data in a table
 update names set first_name = 'Sally' where person_id = 1;
 
---select is used to get data from a table. This is sometimes categorized under DQL
+--select is used to get data from a table. This is sometimes categorized under DQL separately from DML
 select * from names where person_id = 1;
 
 --delete is used to remove data from a table
 delete from names where person_id = 1;
 ```
+###
 ### Data Control Language (DCL)
 ```sql
 --these commands manage users and privileges on the database
