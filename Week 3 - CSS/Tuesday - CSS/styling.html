@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styling</title>
+    <style>
+        /* we can use internal styling to set default style info for all resources labeled */
+        h1{
+            color: burlywood;
+            text-align: center;
+        }
+        /* To target an element by its id you use the # followed by the id value */
+        #idExample{
+            text-align: right;
+            color: aqua;
+        }
+        .classExample{
+            margin: 32px;
+            border: 10px solid black;
+            padding: 10px;
+        }
+    </style>
+    <!-- 
+        if you want to put your styling information in a separate file you can use a link element
+        to reference your styling file. The below example uses the style.css file to get external
+        styling information
+    -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 
+        CSS stands for Cascading Style Sheet and is how you stylize your web pages. There three main
+        ways you can apply styling in your web page
+
+        styling prioritization is as follows:
+        1. inline
+        2. internal
+        3. external
+    -->
+
+    <h1>This page is used to show off the basics of CSS styling</h1>
+
+    <!-- Inline styling is where you set your style attributes directly in the element -->
+    <p style="color:blue">This is an example of inline styling</p>
+    <p id="idExample">This paragraph element has an id we can use to apply styling</p>
+    <p>this is some random text</p>
+    <p>This is some more random text</p>
+    <p class="classExample">This paragraph element has a class we can use to apply styling</p>
+    <p class="classExample">This paragraph element also has a class that is shared by the element before for styling</p>
+    <h2>There is no styling here</h2>
+</body>
+</html>
