@@ -232,7 +232,7 @@ Radio buttons are used to let the user select exactly one value from a list of p
 
 ## Forms
 
-Forms are a way to gather user input in HTML and can be created using the `<form>` tag. This tag is used to define a form and contains form elements such as text fields, checkboxes, radio buttons, and submit buttons.
+Forms are a way to gather user input in HTML and can be created using the `<form>` tag. This tag is used to define a form and contains form elements such as text fields, check boxes, radio buttons, and submit buttons.
 
 ```html
 <form id="login-form">
@@ -251,7 +251,7 @@ The select element is used to create a drop-down list. It is most often used in 
 The name attribute is needed to reference the form data after the form is submitted. If you omit the name attribute, no data from the drop down list will be submitted.
 
 The id attribute is needed to associate the drop-down list with a label.
-The option tags inisde the select element defines the available options in the drop-down list.
+The option tags inside the select element defines the available options in the drop-down list.
 
 ```html
 <form>
@@ -289,11 +289,11 @@ There is also the reset button, that will reset the form data and will display a
 - action
     - The action attribute indicates where the form data will be processed. Typically the URL of the server
 - target
-    - Used to speicfy whether the submitted results will open the current window, a new tab, or new frame. The default value is "self" which is the same window. For a new window, use "blank"
+    - Used to specify whether the submitted results will open the current window, a new tab, or new frame. The default value is "self" which is the same window. For a new window, use "blank"
 - name
     - should be provided for each input element. It is not required, but hte value provides a label for the data once the form is submitted. If it is not specified in an input field then the data will not be sent from that field
 - method
-    - Used to speicify the HTTP method used to send data while submitting forms, only two options GET and POST
+    - Used to specify the HTTP method used to send data while submitting forms, only two options GET and POST
 - value
     - Specifies an initial value for the input field. It also serves as the attribute when providing a button a label
 - placeholder
@@ -317,7 +317,7 @@ There is also the reset button, that will reset the form data and will display a
 
 CSS stands for Cascading Style Sheets. It is a language for styling HTML documents by specifying certain rules for the layout and display of elements with key value pairs. 
 
-A CSS consists of a set of rules that defines the webpage. This style sheet contains selectors and declarations. The selector is an HTML element, and the declaration is comprised of a property and a value surrounded by curly braces.
+A CSS consists of a set of rules that defines the web page. This style sheet contains selectors and declarations. The selector is an HTML element, and the declaration is comprised of a property and a value surrounded by curly braces.
 
 ```css
 
@@ -384,7 +384,7 @@ body {
 }
 ```
 
-The order in which styles are applied are like so: External, Internal, then Inline. This means that any style applied as inline CSS will always override external and internal CSS even with clashing properties that are being applied styles.
+The order in which styles are applied are like so: External, Internal, then Inline. This means that any style applied as Inline CSS will always override external and internal CSS even with clashing properties that are being applied styles.
 
 ## CSS Box Model
 
@@ -550,7 +550,7 @@ div p {
 
 This is the approach that allows websites and pages to render on all devices and screen sizes by automatically adapting to the screen that it is being displayed on. This works using CSS by having different settings to serve different style properties depending ont he screen size, orientation, resolution, color capability, and other characteristics of the user's device. It combines flexible grids, flex boxes, flexible images, and media queries.
 
-### CSS3 Mesia Queries
+### CSS3 Media Queries
 
 CSS3 supports responsive web design, all kinds of transitions, transformations, and animations and provides box-sizing tools that enable the user to adjust the size of any element without changing the dimensions or padding of the element.
 
@@ -591,7 +591,7 @@ Used to compose a media query
 
 ## Flexbox
 This is a one-dimensional layout method for arranging elements in rows or columns. 
-In any flexbox layout, the first step is to create a flex container. THe flex container is an area of document laid out using flexbox. We can define it like so
+In any Flexbox layout, the first step is to create a flex container. THe flex container is an area of document laid out using Flexbox. We can define it like so
 
 ```css
 .flex-container{
@@ -603,7 +603,7 @@ The items being represented as flexible boxes inside the flex container are call
 
 Properties of Flex Container:
 - `flex-direction` : used to change the direction of the flex items display.
-- `flex-wrap`: used to define the felx items that should wrap or not
+- `flex-wrap`: used to define the flex items that should wrap or not
 - `justify-content`: used to align the flex items within the container
 
 Properties of Flex Items:
@@ -638,7 +638,7 @@ Like tables, grid layout enables you to align elements into columns and rows. Ho
 Bootstrap is an open-source framework and mobile-first approach to developing responsive websites. It is a front-end framework programmed to support both HTML5 and CSS3.
 
 ### Bootstrap Grid System
-The bootstrap grid system consists of series of containers, rows, and columns to layout and align content. It creates a responsive layout and is built using grids and flexboxes.
+The bootstrap grid system consists of series of containers, rows, and columns to layout and align content. It creates a responsive layout and is built using grids and Flexboxes.
 
 Containers:
 To specify a container, there are two container classes that we can use
@@ -655,7 +655,7 @@ To specify a container, there are two container classes that we can use
 ```
 
 Rows:
-Bootstrap rows are horizontal slices of the screen. THey are only used for containing columns or a wrapper for columns. They have to be placed in contianers to avoid the horizontal scroll on the page. 
+Bootstrap rows are horizontal slices of the screen. THey are only used for containing columns or a wrapper for columns. They have to be placed in containers to avoid the horizontal scroll on the page. 
 
 ```html
 <div class="row">
@@ -665,7 +665,7 @@ Bootstrap rows are horizontal slices of the screen. THey are only used for conta
 
 Columns:
 `.col` class is used to set the width for the column dynamically. Grid system supports a maximum of 12 columns in a row and anything after that will be shifted to the next row.
-You can set the wsize for the colum (ranging from 1 to 12).
+You can set the size for the column (ranging from 1 to 12).
 ```html
 <div class="row">
     <div class="col-3">
