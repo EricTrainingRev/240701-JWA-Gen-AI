@@ -11,6 +11,7 @@ Example Use Case:
 - System: Bank application
 - Preconditions:
     - No registered user with username "Batman" (added after determining positive scenario data)
+    - registered user with username "Robin" (forgot to add this precondition until writting up Negative scenario test cases)
 - Actors:
     - User (creating a new account)
     - Bank application (handles the creation of the new account)
@@ -82,3 +83,57 @@ Negative Use Case Scenario credentials too long:
 3. provide too long username
 4. provide too long password
 5. user should be informed username and password are too long
+
+Negative Use Case Scenario username taken and password too long:
+1. get to landing page
+2. pick option to register
+3. provide non-unique username
+4. provide too long password
+5. user should be informed registration failed
+
+Similar to our Positive Scenario, once we have determined our Negative Scenarios we can start organizing the data we need to walk through the scenarios:
+
+Negative Scenarios data:
+- valid username = "Batman"
+- valid password = "I am the night"
+- non-unique username = "Robin"
+- too long username = "Riddle Me This: I am three pronged, have a handle, and am often used with dinner. What time is it?"
+- too long password = "Riddle Me This: I like to wag my tail when I am happy and bark at the mailman: what is for breakfast?"
+
+Now that we have multiple scenarios with multiple combinations of valid and invalid data, we need a way of keeping track of what the intended output is for the data (success, failure, specific failure message, etc). One way of organizing your data is to create a **Decision Table**. A Decision Table is just a table that lists the data used in a scenario and the expected result of using the data in the given combination.
+<table>
+    <tr>
+        <th>Scenario</th><th>Username</th><th>Password</th><th>result</th>
+    </tr>
+    <tr>
+        <td>Positive Use Case Scenario</td><td>valid username</td><td>valid password</td><td>user registered</td>
+    </tr>
+    <tr>
+        <td>Negative Use Case Scenario Username not unique</td><td>non-unique username</td><td>valid password</td><td>user not registered</td>
+    </tr>
+    <tr>
+        <td>Negative Use Case Scenario Username too long</td><td>too long username</td><td>valid password</td><td>user not registered</td>
+    </tr>
+    <tr>
+        <td>Negative Use Case Scenario Password too long</td><td>valid username</td><td>too long password</td><td>user not registered</td>
+    </tr>
+    <tr>
+        <td>Negative Use Case Scenario credentials too long</td><td>too long username</td><td>too long password</td><td>user not registered</td>
+    </tr>
+    <tr>
+        <td>Negative Use Case Scenario username taken and password too long</td><td>non-unique username</td><td>too long password</td><td>user not registered</td>
+    </tr>
+</table>
+
+Keep in mind when building your own decision tables that it is simply an organizational tool meant to help streamline and increase understanding of what test data goes with each scenario and what the expected outcome of the combination of data should produce. Make sure when creating your own decision tables that you organize them in ways that make sense to you and your team, and follow organizational requirements when present.
+
+Now that our scenarios are created and our test data is organized we can start writting our test cases for the Negative scenarios
+
+|Test Case Id|Description|Preconditions|Test Data|Steps|Expected Outcome|Actual Outcome|Tester|Status|
+|------------|-----------|-------------|---------|-----|----------------|--------------|------|------|
+|2|Negative Use Case Scenario Username not unique|registered user with username "Robin"|non-unique username	valid password|1. get to landing page 2. pick option to register 3. provide non-unique username 4. provide valid password 5. user should be informed the username is already taken|user not registered|TBD|TBD|Needs to be Assigned|
+|3|Negative Use Case Scenario Username too long|N/A|too long username valid password|1. get to landing page 2. pick option to register 3. provide too long username 4. provide valid password 5. user should be informed the username is too long|user not registered|User was registered despite username being too long|Alfred|Defect Report needs to be created|
+|4|Negative Use Case Scenario Password too long|N/A|valid username too long password|1. get to landing page 2. pick option to register 3. provide valid username 4. provide too long password 5. user should be informed the password is too long|user not registered|User was given success message but user was not actually registered|Alfred|Defect Report Generated|
+etc.
+
+Note the Test Cases created above have a combination of generic and specific information: unless your organization has specific requirements for how detailed you need to be when writing your Test Cases you have freedom to organize your Test Cases in a way that makes the most sense to you and your team.
