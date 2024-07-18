@@ -137,3 +137,23 @@ Now that our scenarios are created and our test data is organized we can start w
 etc.
 
 Note the Test Cases created above have a combination of generic and specific information: unless your organization has specific requirements for how detailed you need to be when writing your Test Cases you have freedom to organize your Test Cases in a way that makes the most sense to you and your team.
+
+## Alternate Data Organization: Boundary Analysis Testing
+Looking at our Software Requirements again we can notice that the constraint placed upon the username and password data (can't be longer than 30 characters) creates a virtual "boundary" or fence for the data. Another way besides creating a decision table to organize and plan our testing would be to perform Boundary Analysis Testing (**NOTE**: these options, Decision Tables and Boundary Analysis, are not either/or options, they can be used together). When you perform Boundary Analysis Testing you organize your data in such a way that your data inputs exist on the "boundaries" of your requirements. In our bank app example, our boundary for usernames and passwords is 30 characters, so if we want to perform Boundary Analysis Testing, we would set up our data to go up to but not exceed the boundary for our positive tests, and we would just barely cross the line of the boundary with our negative testing. If we wanted to use this strategy we would organize our data slightly differently:
+
+Testing Data Positive:
+- valid username = "Batman and Robin unite now!!!!"
+- valid password = "Riddler and Joker disagree!!!!"
+
+We know that usernames and passwords can go up to 30 characters, so when doing Boundary Analysis Testing we make our valid data go up to the boundary as closely as allowed. This pulls double duty for us by both validating (assuming no defects are found) the registration feature works as intended, but it also validates for us that the checks in place in the application allow for the full 30 characters and don't accidentally only allow 29 characters (up to not including 30, which is not actually specified in the Software Requirements).
+
+We can use this same idea of putting our data up to or just past the boundary with our negative data
+- non-unique username = "Robin"
+    - this constraint doesn't have "boundaries" like the others, so we can leave it the same as before
+- too long username = "Gordon and Clark are friends!!!"
+- too long password = "Reverse Flash strikes again!!!!"
+    - we make our too long data JUST too long, only one value over the limit
+    - these values are representative of all values that are over the limit: by checking just past the boundary we should be able to confirm that any value past the boundary will be caught
+
+## Alternate Data Organization: Error Guess Testing
+The reality is you will not always receive robust documentation on the application you are testing: sometimes the documentation is barebones and you are going to be expected to help with the process of research and creating the documentation for future use, and sometimes the documentation simply doesn't exist and there is not enough time to go about creating it. In these scenarios, where you don't have much documentation to work off, sometimes a tester will be required to use personal experience to determine what kind of testing needs to be accomplished. Error Guess Testing is taking previous experience, whether testing, development, operations, interpersonal, etc., and using that experience to determine what should be tested and how you should go about testing the application you are working on. This kind of testing typically affects the way you think about scenarios primarily, which can help to also determine what kind of test data you need and any preconditions you need to account for.
