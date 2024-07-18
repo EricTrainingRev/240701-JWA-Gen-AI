@@ -34,6 +34,9 @@ JOIN Customer c ON i.CustomerId = c.CustomerId
 JOIN Employee e ON c.SupportRepId = e.EmployeeId
 -- GROUP BY is how you determine what data needs to be aggregated, otherwise the database does not know how to order the aggregated data
 GROUP BY e.EmployeeId -- this tells the database to get the sum of all totals associated with each EmployeeId, found in the employee table
+-- if you want to further filter the results returned, like if you had used a "where" statement, you
+-- need to use the "having" keyword when an aggregate function has been used
+HAVING sum(i.Total) > 730 -- only results with a total sum greater than 730 will be in the result set
 ORDER BY e.LastName ; -- you can provide instruction for how to order the result set, ASC is default, DESC can be selected
 	
 	

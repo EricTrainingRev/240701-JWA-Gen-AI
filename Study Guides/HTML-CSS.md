@@ -2,9 +2,9 @@
 
 HTML stands for Hypertext Markup Language. It is the standard markup language used to create web pages. HTML defines the structure and layout of a web page using a series of elements, such as headings, paragraphs, images, and links.
 
-HTML is used in conjuction with other languages like JavaScript and CSS to create dynamic and interactive web pages.
+HTML is used in conjunction with other languages like JavaScript and CSS to create dynamic and interactive web pages.
 
-A web browser has an interpreter to convert our markup language into pixels to be displayed on the browser. HTML is the markup language that the itnerpreter understands, and we can write it in an established structure that the browser expects. The language is quite forgiving, in that the browser will attempt to fix any broken HTML in order for it to still be interpretable.
+A web browser has an interpreter to convert our markup language into pixels to be displayed on the browser. HTML is the markup language that the interpreter understands, and we can write it in an established structure that the browser expects. The language is quite forgiving, in that the browser will attempt to fix any broken HTML in order for it to still be interpretable.
 
 When we are writing HTML, we are defining the structure of the webpage in large blocks called elements that the web page will use and convert into something that can be displayed. An element consists of 3 parts:
 
