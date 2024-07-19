@@ -208,13 +208,17 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
     - if logged in then I should be sent to the homepage
     - if not logged in then I should be sent back to the login page
 
+## Dynamic Testing
+- verifying software meets requirements during execution of the application
+    - most testing can be classified as Dynamic Testing
+
 ## Static Testing
-- validating software meets quality standard practices before code execution
+- verifying software meets quality standard practices before code execution
     - comments are present where needed
     - privileged information is not hard coded into application
     - best practices are implemented
     - etc.
-- This process is often facilitated by linting software, but also by manual review of the code base
+- This process is often facilitated by linting software, but also by manual review of the code base before Dynamic Testing is done
 
 # Test Documents
 
