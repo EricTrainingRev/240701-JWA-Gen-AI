@@ -41,6 +41,13 @@ The Planetarium is a web application designed by Revature Space Initiative for a
     - Does the service inspire confidence?
     - Is the service pleasing to look at?
 
+## Defect Report Requirements
+- All Defect Reports should include the following information
+    - unique id
+    - description
+    - associated Test Object
+    - associated Test Data
+
 ## MVP Requirements
 - Test Cases are created for Use Cases
 - Test Cases are saved in Jira
