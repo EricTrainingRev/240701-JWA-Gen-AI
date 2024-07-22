@@ -37,6 +37,13 @@ Quality Control is...
 
 An integral part of this quality control process is the [Software Testing Life Cycle](#testing-life-cycle). Thus, we write tests as part of a quality control mechanism to keep software quality high.
 
+### Verification vs Validation
+Two terms with similar meaning are **Verification** and **Validation**, but their goals are different. Testers can verify functionality but discover validation fails, and vice versa. 
+
+When verifying software the tester is answering the question "did we build the product correctly?" This is typically verified through the use of traditional unit, integration, and system testing. 
+
+When validating software the tester is answering the question "did we build the right product?" This is typically validated through the use of acceptance testing and engagement with the product owner.
+
 ## Testing Pyramid
 When determining costs for tests, it is useful to keep the "Testing Pyramid" in mind. This "Test Pyramid" is a visual representation of the cost vs abundance of tests based on certain "levels" of testing. More tests exist at the lower level of the pyramid than at the top because they exist at a lower level of abstraction (unit tests), whereas fewer exist at the top and focus on a higher layer of abstraction (system tests, UI tests, UAT).
 
@@ -81,7 +88,6 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
     - just because there are no defects does not mean your application is good
 
 # Terminology
-
 ## Test Case
 - A test case is a formal collection of data and steps necessary to validate if a requirement is fulfilled
 - All the following documents are meant to assist in the fundamental task of creating and executing test cases
@@ -142,23 +148,12 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
     - etc.
 - these can be related to missed defects, but they can also be issues with the environment the application is in
 
-## Verification vs Validation
-- Verification: did we build the product right?
-  - Verify by passing test cases
-- Validation: did we build the right product?
-  - Validate by passing user acceptance testing or confirming with the client
-
 # Technique
 
-## Use Case
-- A high level description of an application requirement, typically from a business perspective
-- includes the necessary details to craft scenarios and test data in order to create Test Cases
-
-## User Story
+## Use Case Stories (User Stories)
 - User stories are high-level, business artifacts that define software requirements or application features.
     - They should define these from the perspective of an end-user.
 - User stories are designed from the System/Software Requirements.
-- Can be thought of as individual scenarios of a Use Case
 
 ## Black Box vs White Box
 - Black Box testing is testing software without access to the source code
@@ -169,7 +164,6 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
 ## State Transition Diagram
 - a flowchart showing the possible conditions of the test object
 - useful when you need to track the state of the test object and validate the feature works as intended when the state is modified
-![atm example](State-Transition.png)
 
 ## Decision Tables
 -  a table that includes possible inputs and expected outputs from the associated combination of inputs
@@ -208,17 +202,38 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
     - if logged in then I should be sent to the homepage
     - if not logged in then I should be sent back to the login page
 
-## Dynamic Testing
-- verifying software meets requirements during execution of the application
-    - most testing can be classified as Dynamic Testing
-
 ## Static Testing
-- verifying software meets quality standard practices before code execution
+- validating software meets quality standard practices before code execution
     - comments are present where needed
     - privileged information is not hard coded into application
     - best practices are implemented
     - etc.
-- This process is often facilitated by linting software, but also by manual review of the code base before Dynamic Testing is done
+- This process is often facilitated by linting software, but also by manual review of the code base
+
+# Test Roles
+
+## Test Manager
+- similar to a team lead, a Test Manager coordinates between the testing team and others working on the software
+- depending on the team setup, a Test Manager can also be a development team lead
+    - a team practicing Agile development may do both development and testing
+
+## Tester
+- an individual in charge of verifying and validating software functionality and requirements
+- this can be unique position, or it can be combined with a developer position
+
+## Tester/Developer Independence
+- quality is the job of everyone, but the roles we play in maintaining quality can change
+    - Testers approach the software with a pessimistic mindset
+        - "this application has defects, and it is my job to find them"
+    - developers approach the software with an optimistic mindset
+        - "this application works, and I need to continue building on top of it"
+- when the role of tester and developer are separated it is important to remember the two are working towards a common goal: deploying a fully functional and failure free application to end users
+
+## Stakeholders and Business Analysts
+- Stakeholders are whoever or whatever owns the software you are working on
+    - Product Owner is the term for whoever is the point of contact between the dev/test team and stakeholder
+- Business Analysts are individuals that help facilitate communication between developers, testers, managers, stakeholders, and product owners
+    - they tend to have both technical and business knowledge that helps them communicate effectively between the various parties
 
 # Test Documents
 
@@ -285,3 +300,133 @@ Severity and Priority are two different metrics for determining how much a defec
 
 ## logging defects
 If defect reports are a way of managing bugs as they arise, logging defects is a way of recording them for posterity. Again, the means of handling defect logging should be available to you in the test strategy/plan documentation, but for your own projects you will want to create a system of codifying and logging the bugs your application runs into. This can be useful for tracking any persistent bugs: knowing that your login system constantly bugs out may indicate you need to rework it from the ground up. Having the log is a good means of determining if such a drastic measure is warranted.
+
+# Testing Life Cycle
+
+## Standard Testing Life Cycle
+1. Requirement Analysis
+    - what user stories need testing?
+2. Create Test Plan
+    - What is the workflow for writing tests?
+    - how will the testing team be organized?
+    - how will our results be stored?
+    - what technologies will we use for our testing?
+3. Design test cases
+    - what are our unit tests?
+    - what are our integration tests?
+    - what are our End to End tests?
+    - what are our positive tests?
+    - what are our negative tests?
+4. Set up test environment
+    - create test server
+    - create database with dummy data
+    - create mock API endpoints
+5. Run tests
+    - generate test report
+    - report new bugs
+
+
+# Agile
+
+## The old ways: Waterfall
+Anytime a project (any project) gets started, there is a key question that needs to be asked: can I got back? This might seem like a silly question, but there are some fields/projects where the answer to this question is actually no: a bridge builder, if a mistake is made with the bridge, can't just click "ctr + z" to undo the mistake. If a brain surgeon accidentally cuts the wrong part of the brain, he can't just glue it back on without consequence. There are times when work needs to be done and it needs to be done right the first time because there is little to no room for error. This is not a bad thing in itself, but it does limit how you can approach problems when this "waterfall" mindset is used. This is the methodology that used to be prevalent in the software world.
+
+Pros to the Waterfall methodology:
+- it is very easy to know what the end goal is
+    - usually the end goal is explicitly spelled out in some sort of contract
+- it is very easy to know what the "next" step is
+- helps to reduce confusion between teams
+    - each team will usually have a specific role in the development process, no need to second guess yourself and the part of the process you are working in
+- you don't need any in-depth knowledge of any sort of "ceremonies" or mindsets to do your job well in a Waterfall environment: once step A is finished, you move on to step B, then C, etc.
+
+Drawbacks to the Waterfall methodology:
+- if a client agrees to contract/terms, but later realizes that they don't actually want those features they agreed to, they are stuck
+    - on the flip side, the developers can't go back and revise things with the client in order to better produce what the client wants
+- the lack of "backwards" movement creates a lot of pressure to "get it right" the first time. This can be problematic if teams are all doing isolated jobs and don't necessarily know how the pieces work together
+- debugging is hard to do until the complete project is finished, and the end of the waterfall is reached. Because there is no backwards movement, any bugs discovered during the development process have to be worked around
+
+## V-Model
+The V-shaped model is a structured approach to software development similar to the waterfall methodology that emphasizes validation and verification. It begins with defining clear requirements, followed by design and implementation. Each stage is thoroughly validated to minimize errors and ensure the software meets customer needs. Unlike Agile, it’s a sequential process: The model’s “V” shape represents the development lifecycle, with validation on the left side and verification on the right. It ensures that requirements align with user needs and that the final product aligns with those requirements
+
+## The Modern Way: Agile
+If the Waterfall methodology is strict, rigid, and only moves forward, the Agile methodology is its counterpart. Where the Waterfall way is to only step forward, the Agile way allows for taking one step back in order to take two steps forward. 
+
+There are four main tenants of the Agile methodology, many of which were decided upon because of a direct correlation to the waterfall methodology
+
+1. individuals and interactions over process and tools
+    - The waterfall methodology typically involves a large amount of contracts, documentation, and specifications about what tools can and can't be used.
+    - The Agile way is to focus more on constant communication and good relations between the client and developer instead of the peripherals
+2. working software over comprehensive documentation
+    - in the waterfall methodology, even if you know how to fix a bug, if the work to fix it was part of a previous step then too bad: document the bug, create some workarounds, document those workarounds, and give the notes to the client
+    - in the Agile methodology, you just go back and fix the mistake, even if it means you need to cut back on some of the features you can release in time
+3. Customer collaboration over contract negotiation
+    - rigid contracts in the Waterfall methodology made it difficult to change things if/when necessary on both the client and the developers
+    - in the Agile methodology there is collaboration between the two, so if changes need to be made the need can be communicated, discussed, and then implemented
+4. Responding to change over a plan
+    - it is better overall to be able to adjust plans on the fly to actually give the customer what they want than to stick with a plan that does not satisfy anyone
+
+This mindset has proven too be very effective at enhancing customer satisfaction when it comes to enterprise and entrepreneur software work, but this style of development is not ideal in all scenarios: due to the flexible nature of Agile, it is not the optimal way to approach software development for any fields or products that require highly specific and inflexible requirements: you would be better off using a Waterfall approach.
+
+## Agile Methodology
+Teams that work with an Agile mindset typically have three things in common:
+1. Dynamic Project Scopes
+2. Iterative Development Cycles
+3. Copious use of Automation Tools
+
+There is some common terminology that is used across Agile methodologies you should be aware of as well:
+- Epic
+    - Epics are terms used to describe related functionality
+        - "Users should be able to manage their authentication with our application"
+- User Story
+    - User Stories are easy to understand descriptions of functionality in your application
+        - these descriptions should be easy to understand (you don't need technical knowledge to understand them)
+    - "as a user I want to login so I can manage my account"
+    - typically your user stories will be organized into multiple epics
+- Story Points
+    - Story Points are arbitrary numbers (as determined by the team) that are assigned to user stories to determine how much time/effort it will take to complete said user story. These numbers are arbitrary because each team will need to decide how to assign story points to user stories
+        - for instance, for a login user story, you might assign it three story points due to three potential method calls needed to implement the user story
+- Velocity
+    - velocity is the number of story points handled (completed) during a development cycle. As a team matures and completes more development cycles, the velocity numbers (both those completed and those aimed for) can be referenced to better understand the capabilities of the team, and to help the team story point user stories more accurately in the future
+- Sprint
+    - development cycles (typically a few weeks in length) are called sprints. During a sprint a velocity will be aimed for, and when the sprint is finished the team can check to see if they met their target velocity or not, which just further helps them to forecast their capabilities in the future
+
+## Agile Implementation: Scrum
+Scrum is a methodology that uses the Agile mindset to guide the work process and the way teams interact with clients. There are a couple different roles in a scrum, some for the development team and others to categorize the client:
+- Development Team
+    - this is the team (usually a small group, no more than 10 individuals) that is doing the work
+    - there can be multiple teams, not just a dev team (sre team, it team, etc)
+- Product Owner
+    - this is the individual or team that handles communication and coordination with the scrum team
+- Stakeholder
+    - this is the individual or entity that your work is for
+- Scrum Master
+    - this is who is leading the scrum team: they handle communicating with the product owner and they also manage communication between the different teams in the scrum
+        - some teams may not have the Scrum Master handle product owner communication, just be aware
+- Team Members
+    - These are the individuals who compose the various teams in the scrum
+
+## Scrum Terms
+- Three Main Phases
+    - Initial Phase
+        - initial starting goals are set and the starting Project backlog is created
+        - Backlog is a collection of epics/user stories that need to be completed
+    - Sprint Cycles
+        - this is when the sprints happen: depending on how requirements change this phase can be lengthened or shortened according to business needs
+    - Closure Phase
+        - this is where project work is finished, any closing documentation is written up, and the team can be assigned to a new project
+- Key Terms
+    - Backlog
+        - Project Backlog
+            - complete collection of epics/user stories that need to be finished
+        - Sprint Backlog
+            - collection of user stories that need to be completed during the current Sprint
+    - Ceremonies (activities)
+        - User Story Planning
+            - this is the activity at the start of a sprint where user stories and/or epics (depending on the story points involved) are assigned to individuals or groups
+        - Daily Scrum (Stand Up)
+            - daily team check-in during a sprint where teams are able to collaborate and realign with each other
+                - update
+                - what am I going to do today
+                - blockers
+        - Sprint Retrospective
+            - happens at the end of every sprint, it is a time for the team to come together to review how the sprint went and to plan on how the team will improve upon the next sprint
