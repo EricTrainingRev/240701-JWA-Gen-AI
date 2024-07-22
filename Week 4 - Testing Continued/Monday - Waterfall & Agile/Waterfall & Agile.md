@@ -77,3 +77,15 @@ There are some key terms used in a Sprint to facilitate conversations between th
             - note any work that was not finished and needs to be accomplished in the next Sprint
                 - may trigger a need for another User Story Planning session
             - Start planning next Sprint based off the Backlog
+
+# Standard Testing Life Cycle
+1. Requirements Analysis
+2. Create Test Plan
+3. Design Test Cases
+4. Set Up Testing Environment
+5. Run Tests
+
+# Developer vs Tester Mindset
+When working on a project where the developers and testers are separate, it can become easy for the two teams to see each other as the "enemy". In these situations, it is critical to remember that both sides, the devs and testers, are working towards the same goal: creating a product that has a high level of quality and is as defect free as possible. In these situations it is helpful to remember the difference in mindset between developers and testers:
+- Testers: testers take a "pessimistic" approach to testing software. The assumption is that there are defects in the product, and it is the testers job to find and report on those defects
+- Developers: devs take an "optimistic" approach to developing software. The assumption is the software works, and is ready to be built upon to further complete the project
