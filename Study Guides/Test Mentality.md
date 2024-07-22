@@ -150,7 +150,11 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
 
 # Technique
 
-## Use Case Stories (User Stories)
+## Use Case Testing
+- organizing test scenarios and data around individual Use Cases of the software being tested
+- Test Cases are designed around the scenarios and test data associated with each Use Case
+
+## User Story
 - User stories are high-level, business artifacts that define software requirements or application features.
     - They should define these from the perspective of an end-user.
 - User stories are designed from the System/Software Requirements.
