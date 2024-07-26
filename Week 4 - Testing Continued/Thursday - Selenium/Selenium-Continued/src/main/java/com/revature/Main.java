@@ -1,9 +1,13 @@
 package com.revature;
 
+import com.revature.pom.DelayedPage;
 import com.revature.pom.PuppyPage;
 import com.revature.pom.WikiHome;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -11,6 +15,12 @@ public class Main {
 
     public static void main(String[] args) {
         WebDriver driver = null;
+//        basicPomUsage(driver);
+        usingExplicitWaits(driver);
+
+    }
+
+    public static void basicPomUsage(WebDriver driver){
         try{
             /*
                 Once we have created our page object models we can now initialize
@@ -25,14 +35,25 @@ public class Main {
             wikiHome.goToWikipediaHome();
             wikiHome.enterTextIntoSearchBar("puppy");
             wikiHome.clickSearchButton();
-            puppyPage.verifyWeAreOnThePuppyPage();
+            System.out.println(puppyPage.verifyWeAreOnThePuppyPage());
 
         } finally {
             if(driver != null){
                 driver.quit();
             }
-        }
-
     }
 
+}
+
+    public static void usingExplicitWaits(WebDriver driver) {
+        try{
+            driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+            DelayedPage delayedPage = new DelayedPage(driver);
+            delayedPage.openDelayedPage();
+            delayedPage.printMessage();
+        } finally {
+            driver.quit();
+        }
+    }
 }

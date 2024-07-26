@@ -13,17 +13,16 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-        h1 {
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <h1 id="message">Here I am!</h1>
     <script>
         window.onload = function() {
             setTimeout(function() {
-                document.getElementById('message').style.display = 'block';
+                let header = document.createElement("h1");
+                header.id = "message";
+                header.textContent = "Here I am!";
+                document.body.appendChild(header);
             }, 3000);
         };
     </script>
