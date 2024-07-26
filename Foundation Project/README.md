@@ -65,3 +65,17 @@ The Planetarium is a web application designed by Revature Space Initiative for a
     - SQLite3 is used by the application
 - a database needs to be created and set up for the planetarium to work properly. Use the ```setup-reset.sql``` file to create the database at the same location as your "PLANETARIUM" environment variable
 -  start the application with the command ```java -jar path/to/Planetarium-1.0-shaded.jar```
+
+## Project Presentation Order of Operations
+1. Show your final test report for the System Tests you performed
+    - this should be generated via AIO in your Jira project
+2. Show your final test report for the Acceptance Tests you performed
+    - As long as the data is organized and stored in Jira you have flexibility in how you craft this data
+4. Talk through your process on the following subjects
+    - how did you go about organizing/executing your Systems tests?
+        - show your boundary analysis value data organization
+        - showcase the tests you came up with through Error Guessing
+    - how did you go about organizing/executing your Acceptance Tests?
+    - how did you organize your defect reports?
+    - what went well during your testing process?
+    - what will you do differently during the next round of testing to build upon and/or improve on your previous testing cycle?
