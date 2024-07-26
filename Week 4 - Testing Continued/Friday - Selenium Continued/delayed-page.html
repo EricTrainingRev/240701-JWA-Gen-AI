@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delayed Text</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="message">Here I am!</h1>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('message').style.display = 'block';
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
