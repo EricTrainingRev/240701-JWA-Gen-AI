@@ -1,5 +1,6 @@
 package com.revature;
 
+import com.revature.pom.AlertPage;
 import com.revature.pom.DelayedPage;
 import com.revature.pom.PuppyPage;
 import com.revature.pom.WikiHome;
@@ -16,7 +17,8 @@ public class Main {
     public static void main(String[] args) {
         WebDriver driver = null;
 //        basicPomUsage(driver);
-        usingExplicitWaits(driver);
+//        usingExplicitWaits(driver);
+        handlingAlerts(driver);
 
     }
 
@@ -52,6 +54,18 @@ public class Main {
             DelayedPage delayedPage = new DelayedPage(driver);
             delayedPage.openDelayedPage();
             delayedPage.printMessage();
+        } finally {
+            driver.quit();
+        }
+    }
+
+    public static void handlingAlerts(WebDriver driver){
+        try{
+            driver = new ChromeDriver();
+            AlertPage alertPage = new AlertPage(driver);
+            alertPage.openAlertPage();
+            alertPage.clickButton();
+            alertPage.handleAlert();
         } finally {
             driver.quit();
         }
