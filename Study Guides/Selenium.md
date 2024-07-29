@@ -177,3 +177,9 @@ Path screenshotDestination = Paths.get("src/main/resources/filename.jpeg"); // c
 // Use the Files (plural) class to copy the file data to your destination
 Files.copy(fileData.toPath(), screenshotDestination);
 ```
+
+## Selenium IDE and Selenium Grid
+Selenium IDE is a plugin for browsers (Chrome and Firefox have native compatibility) that allows for recording user input and generating Selenium commands for the actions taken. It can be used to help build test cases for automated test suites quickly, and through the use of extra plugins it can be a robust automation suite directly accessed in the browser.
+
+Selenium Grid is a tool that "allows the execution of WebDriver scripts on remote machines by routing commands sent by the client to remote browser instances." It allows for running your Selenium code on multiple machines and in multiple browsers simultaneously. This is a useful tool for testing that a web application behaves as intended across operating systems and web browsers
+
