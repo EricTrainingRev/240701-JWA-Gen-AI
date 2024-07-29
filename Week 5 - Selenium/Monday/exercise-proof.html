@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze</title>
+    <style>
+        body {
+            background-color: green;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 66%;
+            height: 200px;
+            background-color: red;
+            margin: 0;
+            padding: 0;
+        }
+        button {
+            position: absolute;
+            left: 0;
+            padding: 10px;
+        }
+
+        button:first-of-type {
+            top: 0;
+        }
+
+        button:last-of-type {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="startButton">Start</button>
+    <div class="box" id="redBox"></div>
+    <button type="button" id="endButton">End</button>
+</body>
+<script>
+    const redBox = document.getElementById("redBox");
+    let isTracking = false;
+
+    document.getElementById("startButton").addEventListener("click", function() {
+        if (!isTracking) {
+            document.addEventListener("mousemove", trackMouse);
+            isTracking = true;
+        } else {
+            document.removeEventListener("mousemove", trackMouse);
+            isTracking = false;
+        }
+    });
+
+    function trackMouse(event) {
+        let rect = redBox.getBoundingClientRect();
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
+        if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
+            document.body.style.backgroundColor = "red";
+            document.body.firstChild.remove();
+            document.body.lastChild.remove();
+
+        }
+    }
+    document.getElementById("endButton").addEventListener("click", function() {
+        alert("Maze complete");
+        document.removeEventListener("mousemove", trackMouse);
+        isTracking = false;
+    });
+</script>
+</html>

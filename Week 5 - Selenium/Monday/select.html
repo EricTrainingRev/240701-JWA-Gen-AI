@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Selector</title>
+</head>
+<body>
+    <header>
+        <h1 id="selectedPet">Choose a pet</h1>
+    </header>
+    <label for="pets">Select a pet:</label>
+    <select id="pets" onchange="displaySelectedPet()">
+        <option value="">--Please choose an option--</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Bird">Bird</option>
+        <option value="Fish">Fish</option>
+        <option value="Hamster">Hamster</option>
+    </select>
+
+    <script>
+        function displaySelectedPet() {
+            const selectElement = document.getElementById('pets');
+            const selectedPet = selectElement.value;
+            const headerElement = document.getElementById('selectedPet');
+            headerElement.textContent = selectedPet ? `You chose ${selectedPet}` : 'Choose a pet';
+        }
+    </script>
+</body>
+</html>
