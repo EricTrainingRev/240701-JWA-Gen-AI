@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Selenium is an open source project for web browser automation. This means that Selenium consists of software that can control a web browser and perform actions like any human user could - for example, navigating to a website, clicking buttons, and filling out forms. Selenium WebDriver is the core of Selenium which provides an API in many different languages for programmers to write code to manipulate the browser. We will be looking at the Java API for Selenium
+Selenium is an open source project for web browser automation. This means that Selenium consists of software that can control a web browser and perform actions like any human user could - for example, navigating to a website, clicking buttons, and filling out forms. Selenium WebDriver is the core of Selenium which provides an API in many different languages for programmers to write code to manipulate the browser. We will be looking at the Java API for Selenium WebDriver (Selenium WebDriver supports multiple programming languages, not just Java)
 
 There are a few use cases for Selenium:
 * Automated scripts, for example to schedule tedious tasks like filling out a timesheet each week
@@ -54,6 +54,13 @@ WebDriver driver = new ChromeDriver();
 driver.get("https://google.com");
 driver.quit(); // make sure to always quit the driver when finished. try/finally works well for this
 ```
+**NOTE**: different implementations of the WebDriver (such as ChromeDriver or EdgeDriver) have different Option classes that allow you to configure the settings for the browser that Selenium uses for automation. For instance, if you wanted to verify that you can navigate a website without needing cookies active you could start the browser in incognito mode to prevent accidentally using cookie data. Depending on the browser you are using the flags you will add to the option object will be different
+```java
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--incognito");
+WebDriver driver = new ChromeDriver(options);
+```
+Note that if you need to open a browser using a profile (common when testing in enterprise virtual machines) using your browsers option class is how you would activate the profile
 
 Now, what if we want to find elements on the page and manipulate them?
 
@@ -183,3 +190,5 @@ Selenium IDE is a plugin for browsers (Chrome and Firefox have native compatibil
 
 Selenium Grid is a tool that "allows the execution of WebDriver scripts on remote machines by routing commands sent by the client to remote browser instances." It allows for running your Selenium code on multiple machines and in multiple browsers simultaneously. This is a useful tool for testing that a web application behaves as intended across operating systems and web browsers
 
+## JavaScript Executor
+Selenium has the ability to execute JavaScript for you in the browser during automation. For testing purposes it is generally better to avoid using the executor during automated test steps (typical users will not write and execute JavaScript during their normal use of a web application.... usually) but it can be a useful resource for debugging faulty tests and aggregating data for defect reports. However, to get the most out of the tool you need to have a good understanding of how JavaScript works and how to interact with the DOM via JavaScript. It is a worthwhile tool too explore if you know JavaScript or want to log more data in your defect reports, but for general training purposes it is not necessary to use.
