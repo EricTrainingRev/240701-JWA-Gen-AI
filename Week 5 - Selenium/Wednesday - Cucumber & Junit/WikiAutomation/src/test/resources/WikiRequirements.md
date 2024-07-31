@@ -1,0 +1,29 @@
+# Wiki Requirements Document
+- **Epic**
+  - Search functionality
+- **User Stories**
+  - Template: As a... I want... so that...
+    - As a User I want to login so that I can access my account
+    - As a User I want to securely access my Starbucks account so I can order coffee
+    - As the system I want to transform text data into binary data so it is easier to work with in the database
+  - As a User I want to search for informative articles on wikipedia so I can learn new things
+  - As a User I want to use Wikipedia in my own language so I can understand the articles I read
+- **Acceptance Criteria**
+  - As a User I want to search for informative articles on wikipedia so I can learn new things
+    - Given: The User is on the Wikipedia homepage
+    - When: The User enters puppy in the search bar
+    - When: The User clicks the search button
+    - Then: The User should be redirected to the Puppy Wikipedia article
+  - As a User I want to use Wikipedia in my own language, so I can understand the articles I read
+    - Given: The User is on the Wikipedia homepage
+    - When: The User clicks \<language\> link
+    - Then: The User should be redirected to \<title\>
+    - data: 
+      - language
+        - js-link-box-en
+        - js-link-box-es
+        - js-link-box-it
+      - title
+        - Wikipedia, the free encyclopedia
+        - Wikipedia, la enciclopedia libre
+        - Wikipedia, l'enciclopedia libera
