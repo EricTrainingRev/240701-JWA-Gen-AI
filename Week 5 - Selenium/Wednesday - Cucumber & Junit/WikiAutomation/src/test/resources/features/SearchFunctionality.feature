@@ -13,8 +13,10 @@ Feature: SearchFunctionality
 	Scenario Outline: As a User I want to use Wikipedia in my own language, so I can understand the articles I read
 	Language links verifying functionality System Test
 		Given The User is on the Wikipedia homepage
-		When The User clicks <language> link
-		Then The User should be redirected to <title>
+		# to parameterized "language" in the step implementation you need to wrap it in quotes
+		When The User clicks "<language>" link
+		# same for "title"
+		Then The User should be redirected to "<title>"
 
 	Examples: 
 		| language       | title                            |

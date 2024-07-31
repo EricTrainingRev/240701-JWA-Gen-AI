@@ -1,0 +1,290 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2024-07-31T16:45:12.625Z",
+        "line": 5,
+        "name": "As a User I want to search for informative articles on Wikipedia so I can learn new things",
+        "description": "\tSearch bar functionality System Test for Wikipedia homepage",
+        "id": "searchfunctionality;as-a-user-i-want-to-search-for-informative-articles-on-wikipedia-so-i-can-learn-new-things",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1041666200,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "The User is on the Wikipedia homepage",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_is_on_the_Wikipedia_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 167869200,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "The User enters puppy in the search bar",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_enters_puppy_in_the_search_bar()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1162214900,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "The User clicks the search button",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_clicks_the_search_button()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 216000000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "The User should be redirected to the Puppy Wikipedia article",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_should_be_redirected_to_the_Puppy_Wikipedia_article()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@SearchFunctionality"
+          },
+          {
+            "name": "@REV-TC-12"
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-07-31T16:45:15.403Z",
+        "line": 23,
+        "name": "As a User I want to use Wikipedia in my own language, so I can understand the articles I read",
+        "description": "\tLanguage links verifying functionality System Test",
+        "id": "searchfunctionality;as-a-user-i-want-to-use-wikipedia-in-my-own-language--so-i-can-understand-the-articles-i-read;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 193060600,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "The User is on the Wikipedia homepage",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_is_on_the_Wikipedia_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 624282300,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "The User clicks \"js-link-box-en\" link",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"js-link-box-en\"",
+                  "offset": 16
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_clicks_js_link_box_en_link(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 116996300,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "The User should be redirected to \"Wikipedia, the free encyclopedia\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Wikipedia, the free encyclopedia\"",
+                  "offset": 33
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_should_be_redirected_to_Wikipedia_la_enciclopedia_libre(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@SearchFunctionality"
+          },
+          {
+            "name": "@REV-TC-13"
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-07-31T16:45:16.362Z",
+        "line": 24,
+        "name": "As a User I want to use Wikipedia in my own language, so I can understand the articles I read",
+        "description": "\tLanguage links verifying functionality System Test",
+        "id": "searchfunctionality;as-a-user-i-want-to-use-wikipedia-in-my-own-language--so-i-can-understand-the-articles-i-read;;3",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 214777800,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "The User is on the Wikipedia homepage",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_is_on_the_Wikipedia_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 860171000,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "The User clicks \"js-link-box-es\" link",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"js-link-box-es\"",
+                  "offset": 16
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_clicks_js_link_box_en_link(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 159231100,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "The User should be redirected to \"Wikipedia, la enciclopedia libre\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Wikipedia, la enciclopedia libre\"",
+                  "offset": 33
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_should_be_redirected_to_Wikipedia_la_enciclopedia_libre(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@SearchFunctionality"
+          },
+          {
+            "name": "@REV-TC-13"
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-07-31T16:45:17.616Z",
+        "line": 25,
+        "name": "As a User I want to use Wikipedia in my own language, so I can understand the articles I read",
+        "description": "\tLanguage links verifying functionality System Test",
+        "id": "searchfunctionality;as-a-user-i-want-to-use-wikipedia-in-my-own-language--so-i-can-understand-the-articles-i-read;;4",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 312096100,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "The User is on the Wikipedia homepage",
+            "match": {
+              "location": "com.revature.step.SearchBarSteps.the_User_is_on_the_Wikipedia_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 903081900,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "The User clicks \"js-link-box-it\" link",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"js-link-box-it\"",
+                  "offset": 16
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_clicks_js_link_box_en_link(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 120262200,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "The User should be redirected to \"Wikipedia, l\u0027enciclopedia libera\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Wikipedia, l\u0027enciclopedia libera\"",
+                  "offset": 33
+                }
+              ],
+              "location": "com.revature.step.LanguageLinkSteps.the_User_should_be_redirected_to_Wikipedia_la_enciclopedia_libre(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@SearchFunctionality"
+          },
+          {
+            "name": "@REV-TC-13"
+          }
+        ]
+      }
+    ],
+    "name": "SearchFunctionality",
+    "description": "",
+    "id": "searchfunctionality",
+    "keyword": "Feature",
+    "uri": "classpath:features/SearchFunctionality.feature",
+    "tags": [
+      {
+        "name": "@SearchFunctionality",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

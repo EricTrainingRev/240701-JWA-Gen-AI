@@ -14,4 +14,35 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.23.0</version>
+        </dependency>
+        <!--
+            we use cucumber-java to connect our feature file acceptance
+            criteria to actual code blocks that can be executed during our
+            automated tests
+        -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+            cucumber-junit provides access to the Junit (version 4) testing framework. Junit
+            will handle actually executing our tests, which it will be able to do because we
+            use cucumber to provide the steps for the testing
+        -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
 </project>
