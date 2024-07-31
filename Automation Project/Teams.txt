@@ -1,0 +1,43 @@
+1
+	Jon
+	Matthew
+	Katrine
+	Riley J
+
+2 (Alchemy)
+	Riley M
+	Mark
+	Juan
+	Kenneth
+
+3
+	AJ
+	Kevin M
+	Sai
+	Gokhan
+
+4
+	Blake
+	Gureswak
+	Isaias
+	Thanh
+	Tina
+
+5
+	Justin
+	Alan
+	Alexander
+	Femi
+	Kevin T
+
+1. Come up with team name
+
+2. Collect Github information so everyone on the team can be added to the team repo when it is made
+
+3. create git repository for group project
+	- I recommend creating it locally first in a fresh Maven project
+	- Just make the initial repo
+
+4. create remote git repository and link local repo to remote repo
+
+5. break before we set up Jira boards
