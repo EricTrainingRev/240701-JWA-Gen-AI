@@ -272,9 +272,11 @@ When creating your User Stories keep in mind that you will more likely than not 
 Once you have your User Stories (or at least the initial User Stories, since there may be updates) you need to have a way to determine whether a User Story is completed successfully or not with your automated steps. One way of doing this is through the use of Acceptance Criteria. Acceptance Criteria is a collection of actions the end user takes in order to complete the User Story. A common way of framing Acceptance Criteria is to use Gherkin Syntax. By using Gherkin Syntax we will eventually be able to map the actions listed in our Acceptance Criteria to code execution in order to determine whether a User Story has been completed or not. Some of the key words we will focus on:
 - Feature
     - a high level description of a User Story or group of User Stories
+    - feature files should only have one Feature declared: you will run into errors if you have more than one
 - Scenario
     - an explicit or direct description of a User Story being implemented
         - this can be a positive or negative scenario
+    - you may have multiple scenarios in a feature file
 
 Scenarios (and scenario outlines) can use the following terms to organize their Acceptance Criteria steps. Keep in mind these key words are purely used to indicate new steps to take, which means you can not have duplicate implementations (having a given and when statement with the same text would cause an error). Also, Cucumber does not perform any special actions based on your step keyword used: the expected use case of these keywords is purely for human readability when looking through the feature files and reading test reports.
 - Given
@@ -293,11 +295,18 @@ Scenarios (and scenario outlines) can use the following terms to organize their 
 A few other keywords to keep in mind to make organization and automation easier:
 - Scenario Outline
     - this keyword is used in conjunction with the "Examples" keyword to make parameterized Scenarios
-- Example
+    - similar to regular scenarios, you can have multiple scenario outlines
+- Examples
     - this keyword is used to indicate that the following information is parameterized information for a Scenario Outline
+    - you can have unique examples tables for each scenario outline you create
 - Background
     - Background can be used in a feature any time you have a shared starting condition between your scenarios (one or more shared "Given" statement)
-
+    - this should be declared before any scenarios
+- Rule
+    - a relatively new keyword, it can be used instead of scenario to indicate what requirement is being tested
+    - can be useful if you are not working with user stories that fit neatly into scenarios
+    - if you use the Rule keyword then individual test cases for the Rule are organized in Example blocks (not Examples)
+        - [example from Cucumber documentation](https://cucumber.io/docs/gherkin/reference/#rule)
 
 
 # Test Automation Example
