@@ -344,6 +344,57 @@ Feature: As a user I should be able to view Wikipedia pages in different languag
     When  I click the Italian link
     Then  I should be on the Italian home page
 ```
+
+If you have similar steps that need to be executed but with different inputs you can wrap your inputs in quotes to have Cucumber generate a parameterized version of the step. In the example below the "when" and first "and" if each scenario will have a parameterized method generated when you first execute the test
+```feature
+Feature: Login
+
+Scenario: Valid Login
+  Given I am at the login page
+  When I type in a username of "user123"
+  And I type in a password of "password123"
+  And I click the login button
+  Then I should be directed to the user profile page
+
+Scenario: Invalid Login
+  Given I am at the login page
+  When I type in a username of "test123"
+  And I type in a password of "pass12345"
+  And I click the login button
+  Then I should receive a message of "Invalid username and/or password"
+```
+```cli 
+...
+@When("I type in a username of {string}")
+public void i_type_in_a_username_of(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+...
+@When("I type in a password of {string}")
+public void i_type_in_a_password_of(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+...
+```
+
+If you are providing the parameters in a scenario outline you can combine the examples data reference with quote marks to have Cucumber auto provide the data values you want to use
+```feature
+Scenario Outline: valid users should be able to log in
+    Given   the user is on the login page
+    When    the user enters "<username>"
+    When    the user enters "<password>"
+    Then    the user should receive "<result>" message
+
+Examples
+|username|password|result|
+|valid   |valid   |success|
+|invalid |valid   |failure|
+etc.
+```
+if you leave off the quotation marks then Cucumber will generate a unique step for each value in your Example table
+
 To generate methods associated with your steps you have a few options:
 - if you are using a cucumber/gherkin plugin in your IDE you can execute the feature file directly to have Cucumber generate the steps for you
 - you can execute your Test Runner class (assuming you told it where the feature files are located) and have Cucumber generate the steps for you
