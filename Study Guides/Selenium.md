@@ -74,6 +74,17 @@ for (WebElement div : allDivs) {
   System.out.println(div.getText());
 }
 ```
+Selenium supports 8 Locator strategies by default:
+|Locator|Description|
+|-----------|-----------|
+|class name|	Locates elements whose class name contains the search value (compound class names are not permitted)|
+|css selector|	Locates elements matching a CSS selector|
+|id|	Locates elements whose ID attribute matches the search value|
+|name|	Locates elements whose NAME attribute matches the search value|
+|link text|	Locates anchor elements whose visible text matches the search value|
+|partial link text|	Locates anchor elements whose visible text contains the search value. If multiple elements are matching, only the first one will be selected.|
+|tag name|	Locates elements whose tag name matches the search value|
+|xpath|	Locates elements matching an XPath expression|
 
 What happens if we try to query for an element, but that element does not exist on the page? Selenium will throw a `NoSuchElementException`. There is also a chance that we have a reference to an element that no longer exists. If we try to use it, we will get a `StaleElementException` as shown below.
 
@@ -102,8 +113,8 @@ Below is an example of using an explicit wait to wait until the element is visib
 ```java
 WebElement invalidElement = driver.findElement(By.id("someId"));
 invalidElement.click(); // NoSuchElementException!
-WebElement myElement = new WebDriverWait(driver, Duration.ofSeconds(5)))
-   .until(ExpectedConditions.elementToBeVisible(By.id("someId"));
+WebElement myElement = new WebDriverWait(driver, Duration.ofSeconds(5))
+   .until(ExpectedConditions.elementToBeVisible(By.id("someId")));
 myElement.click(); // works now!
 ```
 
@@ -129,6 +140,8 @@ new FluentWait<WebDriver>(driver)
     .until(ExpectedConditions.visibilityOf(someWebElement)); // specifies what condition to be looking for
 ```
 
+### xpath
+xpath is a subject interviewers like to ask questions about, so you will want to dedicate time to studying how to make use of this resource. The [xpath cheatsheet](https://devhints.io/xpath) is an excellent resource for learning how to use this tool, and it includes a link to a web page that allows for practicing using it as well.
 
 ### Page Object Model Pattern
 
@@ -262,6 +275,8 @@ Once you have your User Stories (or at least the initial User Stories, since the
 - Scenario
     - an explicit or direct description of a User Story being implemented
         - this can be a positive or negative scenario
+
+Scenarios (and scenario outlines) can use the following terms to organize their Acceptance Criteria steps. Keep in mind these key words are purely used to indicate new steps to take, which means you can not have duplicate implementations (having a given and when statement with the same text would cause an error). Also, Cucumber does not perform any special actions based on your step keyword used: the expected use case of these keywords is purely for human readability when looking through the feature files and reading test reports.
 - Given
     - A starting point and/or precondition for executing the Acceptance Criteria
 - When
@@ -270,6 +285,10 @@ Once you have your User Stories (or at least the initial User Stories, since the
     - the intended outcome of completing the Acceptance Criteria
     - "Then" statements should be written as "normative" statements
         - example: Then the user "should" be redirected to the puppy homepage
+- And/But
+    - either can be substituted for a Given, When, or Then when you have multiple Given, When, or Then statements in a row. Can be used to make reading the steps a little less choppy
+- \*
+    - a star icon can be used in place of any of the step key words
 
 A few other keywords to keep in mind to make organization and automation easier:
 - Scenario Outline
@@ -278,6 +297,8 @@ A few other keywords to keep in mind to make organization and automation easier:
     - this keyword is used to indicate that the following information is parameterized information for a Scenario Outline
 - Background
     - Background can be used in a feature any time you have a shared starting condition between your scenarios (one or more shared "Given" statement)
+
+
 
 # Test Automation Example
 
