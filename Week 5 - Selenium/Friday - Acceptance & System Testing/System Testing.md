@@ -1,0 +1,16 @@
+# System Testing
+- End-to-End testing
+    - verifying user actions can complete User Stories according to given Acceptance Criteria
+- Performance Testing
+    - if End-to-End testing could be described as verifying whether a car can drive, Performance Testing is verifying how efficient the car is using its resources (gas consumption, how quickly AC cools the car, how well tires maintain air pressure, etc.)
+    - Performance Testing is about verifying the application/service meets requirements that are more internal facing as opposed to external facing
+        - Load Testing is simulating expected user traffic to an application/service and verifying the application and environment the application is deployed in handle the traffic load as expected
+            - good Load Testing can catch un-utilized resource usage and problems like memory leaks that can cause an application to require its production environment to scale needlessly, which can cost a company extra money it didn't need to spend if not caught
+            - on the flip side, you may find your application is simply unable to handle the expected load of traffic sent its way due to the environment it is deployed and, and therefore you actually need to allocate more resources to the application in order for it to work correctly
+        - Spike Testing is where you simulate an unexpected increase in user activity for part of your service (think a large number of people trying to log in at the same time after a major update). This is useful for seeing how your application and the environment your application is deployed in can handle sudden increases in usage
+- Compatibility Testing
+    - anytime an application or service can be used in multiple environments (think creating a desktop application that can be deployed to Windows and Mac) you should perform Compatibility Testing to ensure your product works as intended in all the environments you expect your product to be used in
+        - This is particularly important for web based applications and services due to the sheer volume of possible browsers that may interact with your service
+- Penetration Testing
+    - any application that is exposed to the public is going to require some security features, typically in both the application itself and the environment it is deployed in. Penetration Testing is where you create tests to verify and validating the security measures put in place for the application and production environment are working correctly 
+        - this can be software based, or it can be interpersonal (social engineering, physical theft, etc.)
