@@ -1,0 +1,30 @@
+# Acceptance Testing
+- User Acceptance Testing
+    - this testing is done to get answers to questions that are difficult to quantify:
+        - is the application pleasing to look at
+        - is the application intuitive
+        - does the application inspire confidence in the service
+        - etc.
+    - **NOTE**: UAT used to require fully manual testing, but with the advent of generative AI, particularly generative AI in the art field, this process is starting to have ways of being automated. At this time these automation tools are primitive and require manual validation, but there will soon be a time (assuming generative AI research continues and open source models continue to be available) where UAT will be able to have significant benefits from automation tools
+- Operational Acceptance Testing
+    - this kind of acceptance testing is internal focused and typically more administrative in nature
+        - this tends to be more of a Quality Assurance kind of testing as opposed to Quality Control
+        - Is data appropriately backed up?
+        - Are logs producing meaningful data?
+        - Installer/uninstaller works correctly
+        - Are security vulnerabilities handled?
+            - this is less application specific and more environment focused
+                - not allowing public access to internal cloud resources
+                - if a cloud resource is meant to be public not exposing more ways of access to the public resources than necessary
+- Contractual/Regulatory Acceptance Testing
+    - Contractual requirements are often baked into contracts when working on software for companies that deal with "privileged" information. This is data that typically can either be used to identify users of a service (social security number, name, home address, mailing address, email, phone number, etc.) or is related to sensitive information such as payment information (debit/credit card number, security number, pin, etc.). 
+        - any time you work with privileged information you are most likely going to have some form of contractual requirement to implement your application/service in a way that protects the privileged information. Any time you have these requirements you will want to perform Contractual Acceptance Testing to ensure you are not exposing privileged information, which if exposed, can have long term consequences for the users that had their information exposed, and often times can have a financial or legal ramification for the company that exposed the information
+    - Regulatory Acceptance Testing is validating an application/service adheres to any regulatory rules imposed by the government where the application/service is being offered.
+        - this kind of testing is extremely important for any company that is multi-national, due to the need to be compliant with multiple regulatory entities.
+        - typically when Regulatory Acceptance Testing is done a representative from the regulatory body will be present to validate the software does in fact meet regulations
+        - this kind of testing is not just important for enterprise companies: anyone that wishes to offer a software service (game, online store, etc.) must be aware of the regulatory requires they must meet, otherwise they risk legal and financial penalties
+- Accessibility Acceptance Testing
+    - typically when an application or software is built developers assume that the end user will have access to all their sense and not have any sort of negative physiological response to working with the web page. This is not always the case: an animation may cause motion sickness, or someone who is blind may want to interact with your web page. Accessibility Acceptance Testing is testing to see if accommodations have been made for these individuals
+        - can someone who gets motion sickness from animations on a web page access the page in a way that does not utilize the animations (toggling them off, accessing an alternate page, etc.)
+        - can someone who is blind use a screen reader to provide relevant information about the page so they can interact with the service via a third party software?
+        - can someone who is deaf understand how to use the web service (are processes reliant on sound cues? If so, are there alternate ways of letting someone know that a process has completed?)

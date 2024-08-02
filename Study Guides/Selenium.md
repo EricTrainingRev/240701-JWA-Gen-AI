@@ -440,7 +440,7 @@ public class WikiLinksSteps {
 
 }
 ```
-Cucumber takes the acceptance criteria above and links it to the steps defined above.
+Cucumber takes the acceptance criteria above and links it to the steps defined above. **NOTE** you do not need to localize your step methods: they can be defined in one more multiple classes as long as Cucumber is provided information about where to look to find these methods (how do do this is shown in the next section)
 
 In order to centralize your control over your End to End testing a test runner class can be used. This class is where you will initialize and destroy all shared resources needed for your tests. 
 
@@ -460,10 +460,10 @@ import java.time.Duration;
 @CucumberOptions(
         /*
             features: this determines which feature file/s will be used
-            glue: this tells Cucumber where the step implementations are. Direct it to a package
+            glue: this tells Cucumber where the step implementations are. Direct it to a package or multiple classes
          */
         features = "classpath:features",
-        glue = "com/revature/steps"
+        glue = "com.revature.steps"
 )
 public class TestRunner {
 
