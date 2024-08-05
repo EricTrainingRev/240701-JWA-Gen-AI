@@ -86,6 +86,17 @@ Selenium supports 8 Locator strategies by default:
 |tag name|	Locates elements whose tag name matches the search value|
 |xpath|	Locates elements matching an XPath expression|
 
+## .navigate()
+Driver objects have access to a method called "navigate" that can be used to perform basic navigation actions in the browser. Note the main difference between using the get method and navigate.to is the former does not save session data (cookies).
+```java
+driver.navigate().back(); // simulates clicking the back button
+driver.navigate().forward(); // simulates clicking the forward button
+driver.navigate().refresh(); // simulates clicking the refresh button
+
+driver.navigate().to("url"); // same as driver.get("url"), except it saves session data
+```
+
+
 What happens if we try to query for an element, but that element does not exist on the page? Selenium will throw a `NoSuchElementException`. There is also a chance that we have a reference to an element that no longer exists. If we try to use it, we will get a `StaleElementException` as shown below.
 
 ```java
@@ -106,7 +117,7 @@ WebDriver driver = new ChromeDriver();
 driver.manage().timeouts().wait(Duration.ofSeconds(1)); // this tells the driver to wait up to one second for elements to be found on the page
 ```
 
-Explicit waits apply individually and adjust the waiting time explicitly and dynamically at regular intervals. For example, if it usually takes 3 seconds for an element to load, you can use an explicit wait to poll at intervals of 200 milliseconds up to a maximum of 5 seconds. This is not possible with an implicit wait. You should **ALWAYS use explicit waits** (don't use Thread.sleep()). They are not only more performant but have well documented and defined behavior and work with a wide variety of conditions.
+Explicit waits apply individually and adjust the waiting time explicitly and dynamically at regular intervals. For example, if it usually takes 3 seconds for an element to load, you can use an explicit wait to tell Selenium to pause execution while waiting for that element to load. This allows you to avoid adjusting your implicit wait to accommodate an outlier element that takes a long time to load, but it also allows you to wait for many other situations (alert present/gone, title text, element hidden, etc.) You should **ALWAYS use explicit waits** (don't use Thread.sleep()). They are not only more performant but have well documented and defined behavior and work with a wide variety of conditions.
 
 Below is an example of using an explicit wait to wait until the element is visible on the page.
 

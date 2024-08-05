@@ -1,0 +1,2 @@
+# Automation Testing Tutorials
+[this](https://demo.seleniumeasy.com/) website has a significant collection of web pages designed to provide practice opportunities for using Selenium and other browser automation tools. For those looking for more hands on practice using Selenium and for those that would like more XPath practice, I recommend automating your way through the tutorials using XPath as your only locater strategy.
