@@ -170,7 +170,7 @@ public class CheckoutPage {
 
   public MyHomePage(WebDriver dr) {
     this.driver = dr;
-    PageFactory.init(dr, this); // we need this line to tell Selenium to instantiate the fields in our class
+    PageFactory.initElements(dr, this); // we need this line to tell Selenium to instantiate the fields in our class
   }
 
   public WebElement getFirstItemName() {
