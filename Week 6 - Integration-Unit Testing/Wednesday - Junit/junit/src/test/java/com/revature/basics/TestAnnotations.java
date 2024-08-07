@@ -70,6 +70,12 @@ public class TestAnnotations {
         System.out.println(input);
     }
 
+    @Test
+    public void testFour(){
+        // if an unhandled exception is thrown then a test is considered to have failed
+        throw new RuntimeException("This is your failure message");
+    }
+
     /*
         You can use an @After annotated method to perform any sort of teardown that needs to happen after each test method
         is executed. This is particularly useful when you have non-static resources that need to be closed after a test
