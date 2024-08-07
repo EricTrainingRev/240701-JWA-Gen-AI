@@ -1,11 +1,7 @@
 package com.revature.basics;
 
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 /*
     You could shorthand the imports above with: import org.junit.*;
 */
@@ -74,6 +70,12 @@ public class TestAnnotations {
     public void testFour(){
         // if an unhandled exception is thrown then a test is considered to have failed
         throw new RuntimeException("This is your failure message");
+    }
+
+    @Ignore("showcasing how to ignore tests")
+    @Test
+    public void testFive(){
+        throw new RuntimeException("This should be ignored");
     }
 
     /*
