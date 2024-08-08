@@ -2,6 +2,7 @@ package com.revature;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -80,7 +81,7 @@ public class MockTest {
             to return the expected value (you would make the assumption that, if the method were actually
             implemented and called, this is the value you would get back)
          */
-        Mockito.when(repo.getPerson("Sally")).thenReturn("Sally found!");
+//        Mockito.when(repo.getPerson("Sally")).thenReturn("Sally found!");
         String result = service.getValidPeople("Sally");
         Assert.assertEquals("Sally found!", result);
     }
@@ -100,9 +101,45 @@ public class MockTest {
             this case, is null, and so the test fails
          */
         Mockito.when(repo.getPerson("Bruce")).thenReturn("Bruce found!");
-
         String result = service.getValidPeople("Sally");
         Assert.assertEquals("Sally found!", result);
+    }
+
+    @Test
+    public void canProvideAnyArgument(){
+        /*
+            If you have to stub a method and the argument is not important for the stub then
+            you can use Mockito.any() to tell the mock object to accept any argument and return
+            your desired stubbed result
+         */
+        Mockito.when(repo.getPerson(Mockito.any())).thenReturn("Jimmy found!");
+        String result = service.getValidPeople("Four score and seven years ago....");
+        Assert.assertEquals("Jimmy found!", result);
+
+    }
+
+    @Test
+    public void checkPathOfExecution(){
+        Mockito.when(repo.getPerson("Sally")).thenReturn("Sally found!");
+        service.getValidPeople("Sally");
+        /*
+            If you want to verify the path of execution (useful for Acceptance testing for
+            regulation and quality assurance validation) you can "verify" your mock object
+            has called a method with a specific argument X number of times, or some variation
+            of that kind of check
+                - times() = specific number of times you want a method to be called with a given argument
+                - atLeast() = minimum number of times you want a method to be called with a given argument
+                - atMost() = maximum number of times you want a method to be called with a given argument
+
+            Note that whether you have a static object created by a @BeforeClass or instance @Before
+            object, Mockito will dynamically keep track of method calls and arguments provided. Despite
+            this, it is still considered good practice to let your mocks be created new for each test
+            case (via @Before) because even though method invocations are not retained between test cases
+            Mockit.when() calls are, so if you don't refresh your mock object your stubs may not behave as
+            expected
+         */
+        Mockito.verify(repo).getPerson("Sally"); // will pass, was called once
+        Mockito.verify(repo, Mockito.atLeast(2)).getPerson("Sally"); // will fail, since it was not called at least twice
     }
 
 }
