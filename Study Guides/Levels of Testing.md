@@ -150,19 +150,21 @@ Unit testing is a critical process in software development where individual comp
     - testing how well an application works, not if it works or not
     - typically part of System Testing, but it can be Integration or Unit testing
     - types of Performance Testing:
-        - Endurance: testing how long an application can be sustained under normal load
+        - **Endurance**: testing how long an application can be sustained under normal load
             - can reveal defects like memory leaks or poorly configured log management, or other defects that are only revealed over time
-        - Performance: testing responsiveness and latency under normal load
+        - **Performance**: testing responsiveness and latency under normal load
             - often used when Service Level Agreements (SLAs) specify a level of performance a service should provide, such as time limits on latency or availability agreements
             - confusingly, performance testing is a kind of testing that falls under the category called "Performance Testing"
-        - Load: measuring performance at differing loads of traffic
+        - **Load**: measuring performance at differing loads of traffic
             - particularly useful if your service is deployed in an auto-scaling environment in the cloud, can reveal defects in the deployment environment
-        - Stress: continually increasing the load of a service to capacity to identify the breaking point of the application
+        - **Stress**: continually increasing the load of a service to capacity to identify the breaking point of the application
 - **Compatibility Testing**
   - Testing that a feature or application works the same on different platforms, operating systems, browsers, etc
 - **Regression testing**
   - testing done after one or more new features are implemented to check if the new feature/s broke old features
     - one of the major benefits of automated testing is the ability to quickly perform Regression Testing
+- **Retesting**
+  - testing done after making changes to fix a defect
 - **Automated testing**
   - Not subject to human error
   - Quicker than manual testing
@@ -196,6 +198,8 @@ Unit testing is a critical process in software development where individual comp
 - **Alpha/Beta testing**
   - Alpha: initial round of Acceptance Testing, usually User Acceptance Testing. Typically internal people are used
   - Beta: limited release to specific end-users for testing, not limited to internal employees
+- **Useability Testing**
+  - testing the accessibility features of an application to determine the ease of use offered by the service
 
 # Testing Techniques Revisited
 - Positive / negative
@@ -228,6 +232,3 @@ Unit testing is a critical process in software development where individual comp
         - preconditions
         - actors (software/people involved)
     - once the scenarios are determined and test data is organized for the Use Case then Test Cases can be created
-
-
-## TODO: add Usability Testing and Retesting to testing types
