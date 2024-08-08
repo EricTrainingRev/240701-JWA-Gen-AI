@@ -154,10 +154,10 @@ Unit testing is a critical process in software development where individual comp
             - can reveal defects like memory leaks or poorly configured log management, or other defects that are only revealed over time
         - Performance: testing responsiveness and latency under normal load
             - often used when Service Level Agreements (SLAs) specify a level of performance a service should provide, such as time limits on latency or availability agreements
+            - confusingly, performance testing is a kind of testing that falls under the category called "Performance Testing"
         - Load: measuring performance at differing loads of traffic
             - particularly useful if your service is deployed in an auto-scaling environment in the cloud, can reveal defects in the deployment environment
-        - Stress: continually increasing the load to identify the breaking point of the application
-            - can be used in Load Testing, or can be used for Integration Testing on specific features of the application
+        - Stress: continually increasing the load of a service to capacity to identify the breaking point of the application
 - **Compatibility Testing**
   - Testing that a feature or application works the same on different platforms, operating systems, browsers, etc
 - **Regression testing**
@@ -181,10 +181,12 @@ Unit testing is a critical process in software development where individual comp
   - Test that verifies basic and critical functionality to identify glaring defects (i.e. if there's smoke, there's fire)
   - Performed first in a build, so that if it fails we don't need to waste time testing more advanced features
   - e.g. for a calculator, testing that pressing the ON button causes the calculator to start: if this fails there is no point in checking its other features
+  - can be thought of similar to a general health check up
 - **Sanity testing**
   - Subset of regression testing, performed on specific feature
   - Performs a "sanity check" to verify bugs have been fixed or functionality works as intended
   - e.g. for a calculator, check that 2+2=4. if this fails, there is no point in running further addition tests
+  - can be thought of as similar to a specialized health check up
 - **Exploratory Testing**
   - Type of testing where test cases are not created in advance but instead on the fly in a White Box testing situation
   - The kind of tests to be created are determined by examining the source code and environment where the application will deploy
