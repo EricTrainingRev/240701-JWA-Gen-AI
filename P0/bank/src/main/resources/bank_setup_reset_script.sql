@@ -6,3 +6,4 @@ create table "user"(
 );
 
 insert into "user" values ('admin', '1234');
+insert into "user" values ('admin2','12345');

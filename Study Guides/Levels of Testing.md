@@ -5,7 +5,7 @@
 ### Typical Objectives
 Acceptance Testing is a process that allows for validating the application in question actually meets the requirements of the application owner and the end users to ensure the successful release of the application. This process not only creates confidence in the system as a whole but also ensures that the application is ready for release to users. While system defect identification is not the primary focus, discovering numerous defects may indicate substantial foundational issues within the application. Ideally, Acceptance testing should be done to validate the application, not verify its functionality (verification should be handled in the lower levels of testing)
 
-### Types of Acceptance Testing
+### Common Types of Acceptance Testing
 - User Acceptance Testing
     - The application handles all requirements needed by the end user
 - Operational Acceptance Testing
@@ -37,7 +37,7 @@ Acceptance Testing is a process that allows for validating the application in qu
 ### Typical Objectives
 System Testing involves verifying that functional and non-functional requirements are met when all systems are working together in an application. This includes the database, back end, front end, and supporting cloud infrastructure. Good System Testing can reveal novel defects that are undetectable by lower level testing, and a robust System Testing suite helps create confidence in the system as a whole.
 
-### Types of System Testing
+### Common Types of System Testing
 - End to End testing
     - verifying user actions can complete User Stories by fulfilling  Acceptance Criteria
 - Performance testing 
@@ -59,3 +59,173 @@ System Testing involves verifying that functional and non-functional requirement
 - Performance does not meet minimal requirements
 - Application does not meet security requirements
 - Cloud environment does not scale appropriately
+
+## Integration Testing
+
+### Typical Objectives
+Integration testing is the process of testing how different modules or components of your software work together. It ensures that individual software modules created by different developers with different understandings and programming logic function together seamlessly. It also helps identify and catch any bugs arising from combining modules. The key objectives include creating confidence in the interfaces of the application, ensuring that the join points other programs will interact with are robust, and finding defects to prevent them from escaping into higher levels of the software.
+
+### Common Types of Integration Tests
+- API Testing
+    - verifying an API returns expected results
+- Top Down Integration Testing
+    - starting at the "highest" level of the application and testing your way down
+        - think testing the API of an application, then adding the service layer, then adding the repository layer
+- Bottom Up Integration Testing
+    - starting at the "lowest" level of the application and testing your way up
+        - think testing the repository layer of an application, then adding the service layer, then adding the API
+- Incremental Integration Testing
+    - test modules and their associated code piece by piece
+
+### Typical Defects
+- Incorrect data input/output
+    - Missing fields
+    - Encoded differently
+    - Incompatible data types
+- Un-handled communication errors
+- Failed security
+- Unenforced business requirements
+
+## Unit Testing
+
+### Typical Objectives
+Unit testing is a critical process in software development where individual components of a program are tested in isolation to ensure they function correctly. Developers focus on the smallest units of code, such as functions or methods, to identify and fix defects early in development if possible.
+
+### Common Types of Unit Tests
+- Positive Unit Test
+    - given valid input the expected output is returned
+- Negative Unit Test
+    - given invalid input the expected output is returned
+
+### Typical Defects
+- Flow control failures
+- Improper logic
+- wrong variables used
+- environment variables malformed
+- properties incorrectly configured
+
+# Types of Tests Revisited & Updated
+- **Functional**
+  - broad category of tests, relates to features that a user can use (i.e. WHAT the system does)
+- **Non-Functional**
+  - broad category of tests, relates to the way the software operates (i.e. HOW the system operates)
+  - Can include:
+    - Security
+    - Usability
+    - Compatibility
+    - Performance
+- **Static Testing**
+  - broad category, refers to testing/examining a program's code without running it
+    - using a linter to analyze the code
+    - having a peer analyze the code
+    - typically used to verify Quality Assurance practices are being followed
+        - comments are being used appropriately
+        - recommended versions of dependencies are being used
+        - source code organization follows company best practices
+        - git strategies are enforced
+- **Dynamic Testing**
+  - broad category, involves interacting with the system while the program runs
+        - your typical Acceptance, System, Integration, and Unit tests will almost always fall under Dynamic Testing
+- **White Box**
+  - Testing with knowledge of the internal structure or code of the application
+- **Black Box**
+  - Testing functionality without knowing the internal structure or code
+  - Only testing WHAT happens, not HOW the feature is implemented
+- **Testing Pyramid**
+  - **Unit Testing**
+    - Testing of the smallest individual parts (units) of the application
+    - Base of pyramid - most tests should be unit tests
+  - **Integration Testing**
+    - Testing the interactions of individual units working together
+  - **System Testing**
+    - Testing how the system functions as a whole
+        - much manual testing is some form of System Testing
+  - **Acceptance Testing**
+    - user of the application validates that it satisfies their requirements
+        - product owner validates correct application was created
+        - regulatory body validates local ordinances are being followed
+        - end user validates the application is intuitive and engaging
+    - Top of pyramid, should have relatively fewer Acceptance Tests than others
+- **Performance Testing**
+    - testing how well an application works, not if it works or not
+    - typically part of System Testing, but it can be Integration or Unit testing
+    - types of Performance Testing:
+        - Endurance: testing how long an application can be sustained under normal load
+            - can reveal defects like memory leaks or poorly configured log management, or other defects that are only revealed over time
+        - Performance: testing responsiveness and latency under normal load
+            - often used when Service Level Agreements (SLAs) specify a level of performance a service should provide, such as time limits on latency or availability agreements
+        - Load: measuring performance at differing loads of traffic
+            - particularly useful if your service is deployed in an auto-scaling environment in the cloud, can reveal defects in the deployment environment
+        - Stress: continually increasing the load to identify the breaking point of the application
+            - can be used in Load Testing, or can be used for Integration Testing on specific features of the application
+- **Compatibility Testing**
+  - Testing that a feature or application works the same on different platforms, operating systems, browsers, etc
+- **Regression testing**
+  - testing done after one or more new features are implemented to check if the new feature/s broke old features
+    - one of the major benefits of automated testing is the ability to quickly perform Regression Testing
+- **Automated testing**
+  - Not subject to human error
+  - Quicker than manual testing
+  - Initial upfront investment, but saves time in the long run
+  - Reliable, can run 24/7
+  - Can handle complex and large applications
+  - Well suited for unit, integration, regression, and performance testing
+- **Manual testing**
+  - Subject to human error
+  - Slower than automated testing
+  - Easier for smaller or simpler applications or features
+  - requires less upfront investment or technical knowledge
+  - Well suited for Acceptance testing
+- **Smoke testing**
+  - Subset of acceptance testing, performed on entire system
+  - Test that verifies basic and critical functionality to identify glaring defects (i.e. if there's smoke, there's fire)
+  - Performed first in a build, so that if it fails we don't need to waste time testing more advanced features
+  - e.g. for a calculator, testing that pressing the ON button causes the calculator to start: if this fails there is no point in checking its other features
+- **Sanity testing**
+  - Subset of regression testing, performed on specific feature
+  - Performs a "sanity check" to verify bugs have been fixed or functionality works as intended
+  - e.g. for a calculator, check that 2+2=4. if this fails, there is no point in running further addition tests
+- **Exploratory Testing**
+  - Type of testing where test cases are not created in advance but instead on the fly in a White Box testing situation
+  - The kind of tests to be created are determined by examining the source code and environment where the application will deploy
+- **Error Guessing**
+    - Type of testing where test cases are not created in advance but instead on the fly in a Black Box testing situation
+    - the kind of tests to be created are determined by the tester and their experience working with similar applications in other projects
+- **Alpha/Beta testing**
+  - Alpha: initial round of Acceptance Testing, usually User Acceptance Testing. Typically internal people are used
+  - Beta: limited release to specific end-users for testing, not limited to internal employees
+
+# Testing Techniques Revisited
+- Positive / negative
+  - Positive
+    - verify the "happy path", or what happens when valid inputs are given
+    - e.g. verify that a login form will redirect to the home page when valid username and password are entered
+  - Negative
+    - verify the "sad path", or the error states that can occur when invalid inputs are given
+    - e.g. verify that a login form does NOT redirect to home page when invalid credentials are given
+- Equivalence partitioning
+  - Possible inputs to try are infinite, so break them up into "classes"
+  - Choose a representative from each class to represent entire class
+  - e.g. for testing calculator multiplication operation, partition inputs into negative, 0, and positive
+  and have 3 test cases: one with negative number, one using 0, one using positive number
+- Boundary value analysis
+    - most defects occur at the boundaries of requirements, so instead of picking arbitrary values for your "classes" of data, like in Equivalence Partitioning, you pick values at the boundaries of relevant requirements
+- State transition diagram
+  - Identifies the different states of the system and the possibilities of navigating between the states
+  - e.g. defect lifecycle is an example of state transition. project management tools model these states
+- Decision tables
+  - List all possible combinations of inputs and the resulting output
+  - Provides visualization of test data and requirements
+- Use Cases
+    - a way of organizing test data and scenarios that need to be tested to verify requirements are being met
+    - typically contains the following information
+        - id
+        - Use Case name
+        - description
+        - System being tested
+        - preconditions
+        - actors (software/people involved)
+    - once the scenarios are determined and test data is organized for the Use Case then Test Cases can be created
+
+
+## TODO: add Usability Testing and Retesting to testing types
