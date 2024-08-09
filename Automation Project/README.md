@@ -101,3 +101,26 @@ The Planetarium is a web application designed by Revature Space Initiative for a
     - come up with a standard naming convention so everyone can understand what was worked on in a branch at glance
     - determine how often adds and commits should be created
     - determine how the team is going to create commits (active voice, passive voice, generic messages, etc.)
+
+## Project Presentation Requirements
+- 10 minute presentation
+- everyone needs to speak
+- automated tests need to be demoed
+- test results need to be shown
+
+## Project Presentation Order of Operation
+- Introduce team
+- Introduce project
+    - describe goal of this sprint
+    - give general overview of what will be covered in the presentation
+        - MVP requirements met
+        - Stretch goals started/completed
+- Describe Agile practices implemented
+- Describe Git strategies implemented
+- Give demonstration of automated tests in action
+- Describe testing strategy
+- Show off test results
+- give a mini Sprint retrospective
+    - what went well
+    - what will you improve on next sprint
+- field questions

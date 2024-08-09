@@ -81,7 +81,7 @@ public class MockTest {
             to return the expected value (you would make the assumption that, if the method were actually
             implemented and called, this is the value you would get back)
          */
-//        Mockito.when(repo.getPerson("Sally")).thenReturn("Sally found!");
+        Mockito.when(repo.getPerson("Sally")).thenReturn("Sally found!");
         String result = service.getValidPeople("Sally");
         Assert.assertEquals("Sally found!", result);
     }
