@@ -241,14 +241,15 @@ When determining costs for tests, it is useful to keep the "Testing Pyramid" in 
 
 # Test Documents
 
-## Test Plan
-- A detailed document that describes how a team will handle testing for a product/system
-    - includes details for the test strategy, objectives, schedule, estimates, etc.
-- it might also be the central location that would specify what other documents are needed (test case document, requirements traceability matrix, etc.)
-
 ## Test Strategy
-- a component of the test plan
-- details (more specific than the Test Plan) the testing activities to be done and how to achieve them for a specific application, module, or feature
+- A detailed document that describes how a team will handle testing for a product/system
+    - includes details for the test plan, objectives, schedule, estimates, etc.
+- it might also be the central location that would specify what other documents are needed (test case document, requirements traceability matrix, etc.)
+- usually contains universal testing practices to be implemented in all projects
+
+## Test Plan
+- a component of the test strategy
+- details (more specific than the Test Strategy) the testing activities to be done and how to achieve them for a specific application, module, or feature
 - can also include things like cost and effort estimations
 
 ## Test Schedule

@@ -232,3 +232,39 @@ Unit testing is a critical process in software development where individual comp
         - preconditions
         - actors (software/people involved)
     - once the scenarios are determined and test data is organized for the Use Case then Test Cases can be created
+
+# Testing Documents Revisited
+
+## Test Strategy
+- A detailed document that describes how a team will handle testing for a product/system
+    - includes details for the test plan, objectives, schedule, estimates, etc.
+- it might also be the central location that would specify what other documents are needed (test case document, requirements traceability matrix, etc.)
+- usually contains universal testing practices to be implemented in all projects
+
+## Test Plan
+- a component of the test strategy
+- details (more specific than the Test Strategy) the testing activities to be done and how to achieve them for a specific application, module, or feature
+- can also include things like cost and effort estimations
+
+## Test Schedule
+- a document that outlines when testing needs to be finished for the different parts of the software you are testing
+- in Agile development this is a living document: as adjustments are made the schedule will also change
+
+## Requirements Traceability Matrix
+- a document that maps the relationship between System Requirements/User Stories to the Test Cases that cover those requirements, and any defects that are revealed after testing
+
+## Software Requirements Specification
+- a document that lists the software that is needed for the application being tested to work
+- this can also include restrictions on what the software should/should not allow from a business perspective
+    - limiting characters for an input
+    - sanitizing data
+    - facilitating viewable data
+    - etc
+
+## Test Progress Report
+- a document that tracks tests designed and executed
+- works in conjunction with the test schedule
+
+## Test Summary Report
+- a collection of test case execution summaries
+- usually grouped by test runs or cycles, which helps track progress on fixing defects
