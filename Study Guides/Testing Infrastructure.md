@@ -51,3 +51,14 @@ We will be looking at several of the most foundational services offered by AWS. 
 **Elastic Beanstalk & Elastic Container Service**: Elastic Beanstalk offers web environments, scalable clusters of machines on which to deploy your web applications. An EB environment might include EC2 instances for servers, S3 buckets for storage, **CloudFormation** for scaling and orchestration, and **CloudWatch** for health monitoring. Similar to that is Elastic Container Service: a fully managed container orchestration service. This service is particularly useful if you need multiple containers to be networked together due to ECS managing the underlying infrastructure for you
 
 The services listed are a fraction of the offerings AWS provides
+
+### AWS RDS
+RDS is a collection of services for operating a relational database server in the cloud. Take note of the three distinct things that we often call "databases":
+
+- Database Server: A server like any other which hosts the engine
+- Database Engine: The software that allows manipulation of the database
+- Database: one or more files that store data in a systematic way
+
+Amazon RDS helps us manage the Database Server and related infrastructure. We can choose our Database Engine (or management system) from one of the many implementations of SQL including: MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. Amazon even has its own implementation called Aurora.
+
+An RDS instance is little more than an EC2 instance that has the RDBMS, or the Database Engine, installed and configured out-of-the-box. Your RDS instance can scale vertically, and can be set up to scale horizontally as well, though these features aren't covered by free tier. May features of the service can be handled by AWS (updates to the RDBMS, automated backups, data encryption) but not all of these offerings are strictly free tier. For instance, by default, AWS assumes you want your instance to auto scale storage up to 1000G, which is a value not covered by free tier. You as the developer have to turn off the feature

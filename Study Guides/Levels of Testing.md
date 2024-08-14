@@ -186,8 +186,8 @@ Unit testing is a critical process in software development where individual comp
   - can be thought of similar to a general health check up
 - **Sanity testing**
   - Subset of regression testing, performed on specific feature
-  - Performs a "sanity check" to verify bugs have been fixed or functionality works as intended
-  - e.g. for a calculator, check that 2+2=4. if this fails, there is no point in running further addition tests
+  - Performs a "sanity check" to verify functionality of a new feature works as intended
+  - think of it as a smoke test for your regression testing: if your new feature/update has defects then old tests that interact with the new feature are going to fail as well
   - can be thought of as similar to a specialized health check up
 - **Exploratory Testing**
   - Type of testing where test cases are not created in advance but instead on the fly in a White Box testing situation
