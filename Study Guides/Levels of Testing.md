@@ -268,3 +268,270 @@ Unit testing is a critical process in software development where individual comp
 ## Test Summary Report
 - a collection of test case execution summaries
 - usually grouped by test runs or cycles, which helps track progress on fixing defects
+
+# Junit
+Junit is a popular testing framework for enterprise applications. It allows for creating integration and unit tests for your back end applications. Junit makes use of annotations to control testing in your application
+```java
+package org.revature.basic;
+
+import org.junit.*;
+
+public class BasicAnnotationTests {
+
+    @BeforeClass
+    public static void setup(){
+        System.out.println("This runs before all tests");
+    }
+
+    @Before
+    public void beforeEach(){
+        System.out.println("This runs before each test");
+    }
+
+    /*
+        NOTE: a test is considered to pass if no exception is thrown by the test method
+    */
+    @Test
+    public void testOne(){
+        System.out.println("testOne called");
+        Assert.assertEquals(10,5+5);
+    }
+
+    @Test
+    public void testTwo(){
+        System.out.println("testTwo called");
+        Assert.assertTrue(true);
+    }
+
+    @After
+    public void afterEach(){
+        System.out.println("This runs after each test");
+    }
+
+    @AfterClass
+    public static void afterAll(){
+        System.out.println("This runs after all tests");
+    }
+}
+```
+if testing for exceptions the code looks a little different
+```java
+package org.revature.exceptions;
+
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
+
+public class ExceptionTesting {
+
+    @Test
+    public void exceptionTestingWithLambda(){
+        IndexOutOfBoundsException e = assertThrows(IndexOutOfBoundsException.class, ()->{
+            new ArrayList<Integer>().add(1,1);
+        });
+        assertEquals("Index: 1, Size: 0", e.getMessage());
+    }
+
+    @Test
+    public void exceptionTestingWithoutLambda(){
+        try{
+            new ArrayList<Integer>().add(1,1);
+            fail("this should not happen");
+        } catch(IndexOutOfBoundsException e){
+            assertEquals("Index: 1, Size: 0", e.getMessage());
+        }
+    }
+
+}
+```
+Junit also has some other helpful features, like letting you ignore tests, parameterize data, or create a test runner to control which tests you want executed
+```java
+package org.revature.ignore;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+public class TestIgnore {
+
+    @Ignore("you can say why you ignore a test")
+    @Test
+    public void ignoredTest(){
+        Assert.fail("this test should not run");
+    }
+}
+```
+```java
+package org.revature.parameter;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
+public class ParameterizedTest {
+
+    // live demo example has a simpler solution than this
+    @Parameters
+    public static Collection<Object[]> inputs(){
+        return Arrays.asList(
+                new Object[][]{
+                    {10,true},
+                    {9,false}
+                }
+        );
+    }
+
+    @Parameter // defaults to first value in collection
+    public int number;
+    @Parameter(1)
+    public boolean isEven;
+
+    @Test
+    public void isEvenPositiveAndNegative(){
+        Assert.assertEquals(isEven, number%2==0);
+    }
+
+}
+```
+```java
+package org.revature.runner;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+// you can use this Runner class to execute the tests in the given Suite classes
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        TestSuiteOne.class,
+        TestSuiteTwo.class
+})
+public class TestSuiteRunner {
+}
+```
+
+### Mockito
+Mockito is a framework that makes Mocking objects and Stubbing methods easy. A few key pieces of terminology:
+- Mock: an object we can control in order to focus our tests on another resource
+    - think mocking a dao object inside a service in order to do unit testing of the service object
+- Stub: a method with a pre-determined result
+
+A common practice is to use mock objects to stub methods in order to perform unit testing for a class that has sub dependencies (think your project service and dao objects)
+```java
+package org.example;
+
+/*
+    There will be times when testing applications that the structure of your code will not
+    allow for easy unit testing. Consider a web application that has an API, service layer,
+    and repository layer. Each layer of the application will in some way, shape, or form,
+    require data that has been operated on in the other layers. This is not conducive for
+    unit testing (but it is great for integration testing). In situations where you need
+    to perform unit testing on these integrated classes and their methods you can make
+    use of "Mock" objects to "Stub" method results.
+    - Mock: a mock object can be used to reference methods of a needed object without actually
+            walking through the logic of executing the method code
+    - Stub: a method that has a pre-determined return value, often used in unit testing
+ */
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+public class MockMainTest {
+
+    private Main main;
+
+    @Before
+    public void setup(){
+        /*
+            When we use Mockito to create a mock version of our class we are using
+            Mockito to create a version of the object that we have fine-tune control
+            over. This will allow us to do things like pre-determine return values, check
+            the flow of code execution, and even change the expecte results of the methods
+            in the mock object.
+         */
+        main = Mockito.mock(Main.class);
+    }
+
+    @Test
+    public void stubMethodResults(){
+        /*
+            By default, a mock object will return whatever the non-initialized value
+            of a return type the method should return. We need to tell the mock object
+            what value to return when the method is called with the given arguments
+         */
+        Mockito.when(main.addContent(5,5)).thenReturn(10);
+
+        // Normally, this would return 10
+        int result = main.addContent(5,5);
+        Assert.assertEquals(10, result);
+    }
+
+    @Test
+    public void returnNotRealisticValue(){
+        // you can make the return value whatever you want, as long as the data type
+        // matches the expected return type
+        Mockito.when(main.addContent(5,5)).thenReturn(300);
+        int sum = main.addContent(5,5);
+        Assert.assertEquals(300, sum);
+    }
+
+    @Test
+    public void throwAnException(){
+        // Here we tell Mockito to throw an exception with the method with the given arguments is called
+        Mockito.when(main.addContent(5,5)).thenThrow(new ArithmeticException("This exception was stubbed!"));
+        /*
+            There is a lot to unpack here:
+            Assert.assertThrows returns a Throwable object (returns an exception). It takes in two arguments: the Throwable
+            Type that should be returned, and the second argument is a "Runnable". The runnable is simply a Lambda that
+            you execute whatever code you expect to throw your exception inside of.
+
+            ArithmeticException exception: the Exception object we want the tested method to throw
+            Assert.assertThrows: the Junit provided method that can return the exception that is thrown
+            ArithmeticException.class: this is the exception we are expecting the tested method to throw
+            () -> {main.addContent(5,5)}: this is the Lambda where we actually execute our test method that we expect to
+                                          throw our intended exception
+         */
+        ArithmeticException exception = Assert.assertThrows(ArithmeticException.class, () -> {
+            main.addContent(5,5);
+        });
+        Assert.assertEquals("This exception was stubbed!", exception.getMessage());
+    }
+
+    @Test
+    public void checkPathOfExecution(){
+        Mockito.when(main.addContent(5,5)).thenReturn(10);
+        // Mockito also allows us to check things like how many times a method is executed and what data is passed into
+        // the method
+        main.addContent(5,5);
+        Mockito.verify(main).addContent(5,5);
+    }
+
+    public void checkMultipleExecutions(){
+        Mockito.when(main.addContent(5,5)).thenReturn(10);
+        main.addContent(5,5);
+        main.addContent(5,5);
+        Mockito.verify(main, Mockito.times(2)).addContent(5,5);
+        Mockito.verify(main, Mockito.atLeast(1)).addContent(5,5);
+        Mockito.verify(main, Mockito.atMost(2)).addContent(5,5);
+    }
+
+}
+```
+
+### API Testing
+API testing is a form of integration testing where you verify that HTTP Requests and Responses are working as intended. Some common features to check:
+- is the HTTP Status in the response correct?
+- is the structure of the JSON in the response correct?
+- are the correct headers returned in the response?
+- is an incorrectly formatted JSON rejected by the application?
+- is the correct data returned in the response json?
