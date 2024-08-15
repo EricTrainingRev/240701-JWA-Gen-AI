@@ -54,7 +54,7 @@ The Planetarium is a web application designed by Revature Space Initiative for a
 - feature files should be used to link Acceptance Criteria to code execution in order to perform End to End testing
 - A test driver class should be used to facilitate the End to End testing
 - the application API should be tested with a third party API testing tool
-- the application service layer should have unit tests developed for it using Junit and Mockito
+- the application service layer should have unit and integration tests developed for it using Junit and Mockito
 - the application repository layer should have unit tests developed for it using Junit
 
 ## Defect Report Requirements
@@ -87,6 +87,8 @@ The Planetarium is a web application designed by Revature Space Initiative for a
 - perform extra Acceptance Testing
 - set up a DevOps pipeline
 - configure the planetarium to run in the cloud
+- fix defects
+- continue development on the Planetarium
 
 ## Setup Requirements
 - an environment variable called "PLANETARIUM" needs to be set with the JDBC url for the planetarium database

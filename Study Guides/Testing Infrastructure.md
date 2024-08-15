@@ -52,7 +52,7 @@ We will be looking at several of the most foundational services offered by AWS. 
 
 The services listed are a fraction of the offerings AWS provides
 
-### AWS RDS
+## AWS RDS
 RDS is a collection of services for operating a relational database server in the cloud. Take note of the three distinct things that we often call "databases":
 
 - Database Server: A server like any other which hosts the engine
@@ -62,3 +62,26 @@ RDS is a collection of services for operating a relational database server in th
 Amazon RDS helps us manage the Database Server and related infrastructure. We can choose our Database Engine (or management system) from one of the many implementations of SQL including: MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. Amazon even has its own implementation called Aurora.
 
 An RDS instance is little more than an EC2 instance that has the RDBMS, or the Database Engine, installed and configured out-of-the-box. Your RDS instance can scale vertically, and can be set up to scale horizontally as well, though these features aren't covered by free tier. May features of the service can be handled by AWS (updates to the RDBMS, automated backups, data encryption) but not all of these offerings are strictly free tier. For instance, by default, AWS assumes you want your instance to auto scale storage up to 1000G, which is a value not covered by free tier. You as the developer have to turn off the feature
+
+## AWS S3
+
+### S3 Introduction
+S3 is an object storage service that offers secure and scalable object storage in the cloud. S3 storage is broken into buckets, containers where your data can be found. These buckets can be configured independently and have no limits on how much data can be stored.
+
+### S3 Bucket Configuration
+
+#### Object Storage
+Object storage refers to the way the data is organized, into objects rather than blocks or files. In practice, object storage is very similar to file storage, and both would be implemented physically as block storage. This layer of abstraction is why there is no limit on the data in a bucket, there is no finite volume to fill up. If you were to explore a bucket with data, you would find it to be very similar to any file system you are familiar with.
+
+#### Storage Classes
+There are a number of different storage classes, which control the way our data is stored and retrieved under-the-hood. Sometimes we need storage that is always fast, other times we might want to store data that is rarely retrieved and doesn't need to be instantly available:
+- Standard - General purpose
+- Intelligent-Tiering - automatically re-categorizes objects into appropriate tier based on usage
+- Standard Infrequent Access - For data that is not accessed frequently
+- One Zone Infrequent Access - Cheaper but only exists in one AZ
+- Glacier Instant Retrieval - Archive storage for rarely accessed data
+- Glacier Flexible Retrieval - Archive storage, asynchronous retrieval
+- Glacier Deep Archive - Cheapest solution, for long term storage
+
+### Hosting Static Sites
+A web site is retrieved with an HTTP GET request to a URL, and the web server responds with the HTML, CSS, and JavaScript content that makes up the site. S3 buckets are already designed to serve data objects via HTTP and configuring them to host a site is as simple as one click. This will give you a public URL and have the S3 bucket respond to GET requests to that URL with your site as though it were a web server (which it basically is)
