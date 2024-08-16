@@ -528,6 +528,22 @@ public class MockMainTest {
 }
 ```
 
+### Junit Test Reports
+if you want test reports that can be viewed outside of your IDE you can use the Maven Surefire Plugin by adding it to a build section in your project POM.xml
+
+```xml
+  <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+      </plugins>
+  </build>
+```
+the default plugin settings will generate both text and xml test reports, not particularly easy to read, but the XML option can be uploaded into AIO to record the results of your test cases, though you will need to manually link the tests to any associated issues.
+
 ### API Testing
 API testing is a form of integration testing where you verify that HTTP Requests and Responses are working as intended. Some common features to check:
 - is the HTTP Status in the response correct?

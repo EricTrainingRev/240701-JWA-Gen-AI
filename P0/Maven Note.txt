@@ -1,0 +1,5 @@
+The Surefire plugin was added to the Bank pom in order to generate test results from the Junit tests
+created for the app. If you are looking to get started with generating test reports for your
+unit and integration tests then all you need to do is add the plugin to the POM, and Maven should do
+the rest. If your IDE test runner does not trigger the plugin you can use the command "mvn test" to do
+so.
