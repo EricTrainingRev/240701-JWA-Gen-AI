@@ -141,4 +141,84 @@ Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Ama
 - Vertical Scaling
 - Horizontal Scaling
 
-Vertical scaling refers to changing the performance of a single instance up and down. Adding or removing virtual resources like CPUs, and RAM are examples of vertical scaling. Horizontal scaling refers to changing the number of instances. Additional instances are added as needed to meet demand. As demand drops, instances are removed, and their load is balanced between those that remain. Vertical scaling generally works up to a point, but once we are dealing with very large amounts of traffic horizontal scaling becomes more useful to meet demand
+Vertical scaling refers to changing the performance of a single instance up and down. Adding or removing virtual resources like CPUs, and RAM are examples of vertical scaling. Horizontal scaling refers to changing the number of instances. Additional instances are added as needed to meet demand. As demand drops, instances are removed, and their load is balanced between those that remain. Vertical scaling generally works up to a point, but once we are dealing with very large amounts of traffic horizontal scaling becomes more useful to meet demand.
+
+## DevOps
+
+### DevOps Introduction
+Software Development and Operations (DevOps) is a methodology that combines the development, deployment, and maintanece of code into a single, streamlined process. Ideally, this process is automated as much as possible. There are 5 general steps to Devops:
+1. Source code Control: Producing (writing) code and pushing to a repository
+    - you should already be familiar with this step, it is just the creation of your code (following TDD and utilizing BDD) and publishing it to a central repository
+2. Building and Testing Automation: Test basic functionality of code (Generally unit testing) and create a new, working build
+    - you should be testing your code as you develope, but this is the final, overarching test. This round of testing is the one you want to generate documentation and reports from for either your client or other developers to see
+3. Deploying to Staging: Deployment of working build to a temporary environment
+    - This is a pre-configured enviornment where you can test the entirety of your application without affecting your production enviornment
+4. Acceptance Testing: Undergo other more complex tests (systems, integration) within temporary environment
+    - think of this as the final, official BDD test. This is where the entirety of the (supposedly) working application is put to the test. Again, it is from this test you will want to save your generated report and have it available to either the client or other developers
+5. Deployment of Build: Migrate working build to Production environment accessible by end users
+    - this is the actual deployment of your product
+
+If you are developing with an Agile Mindset there are three practices to know that assist in the process of creating a smooth DevOps pipeline
+- Continuous Integration
+    - This is the practice of regularly and consistently merging code into a central repository. It also involves reviewing the code to make sure the integration is as smooth as possible
+- Continuous Delivery
+    - This is the pratice of automating the DevOps pipeline as much as you can. This means once your code is merged into the central repository it is downloaded and built/tested in a staging environment. This means steps 1-3 of the DevOps process should be automated, and step 4 should be too if you can manage it, though this is not always possible. Deploying to the production environment (step 5) should be done manually, since step 4 may reveal bugs you need to fix before deployment to production
+- Continuous Deployment
+    - Continuous Deployment is the process by which the entirety of the DevOps pipeline is automated, including deployment to production. You can think of it as the all encompassing Agile practice of DevOps, with each other practice being a subset of it
+
+### Continuous Integration
+Continuous Integration (CI) is the most fundamental step in creating an autonomous development pipeline. CI is achieved by the practice of consistently merging code into a central repository. More importantly, CI benefits greatly from the inclusion of rigorous testing as part of your CI process. Particularly important are unit and integration testing
+
+DevOps is about automating and streamlining the parts of software development that get the developers feedback. CI married with testing is the first step to fully realizing an autonomous development pipeline. Each time a developer completes some amount of work and merges that work with the repository, each unit of that new code is tested, and then that new code is integrated and tested with the rest of the code. If testing is done well, this should provide rapid feedback about defects as each module develops. Continuous Integration establishes the foundation for an automated DevOps pipeline because it provides the following benefits:
+ - Ensures the entire team works on the most up to date code
+    - Frequently pushing code allows developers to account for changes performed by other team members quickly.
+ - Detects broken builds quickly
+   - If problems arise, version control software can help detect the root cause or rollback changes when necessary
+ - Code can be tested easily by creating separate test or development branches based on the main code
+ - Reduces risk in development when a large codebase has already been established
+ - Reduces the overall amount of defects in a project
+
+### Continuous Delivery
+Continuous Delivery is a paradigm in which the building, management and testing of produced software is automated such that deployments can be performed at the push of a button. Continuous Delivery seeks to automate every possible step up to but not including deployment. It depends on CI and is a stepping stone on the way to Continuous Deployment (a fully automated development pipeline). Since we don't include deploying the product we can still preform final user testing, and/or leave the production deployment to a regular schedule.
+
+![cd1](cd1.png)
+
+### Continuous Deployment
+Continuous Deployment (CD) advances continuous delivery by also automating the deployment of software to production environments. CD refers to the entire automated development pipeline including merging of code, testing, staging, and finally, deployment. As changes are merged into the central repository, they are already on their way to the end users
+
+![cd2](cd2.png)
+
+Benefits of CD:
+ - Rapid development process
+ - Rapid feedback
+ - Smaller and less risky releases
+ - Regular updates offering users improvements
+
+Costs of CD:
+ - Requires substantial initial investment
+   - Money
+   - Time
+   - Major paradigm shift
+ - Requires continuous investment for maintaining pipeline
+ - Documentation, communication, coordination become even more important
+
+## Static Code Analysis Tools
+Static testing is common in the DevOps process, and there are code quality tools that help you find code "smells" in your application. These are things like:
+- Data security issues
+- Bugs
+- confusing code
+- redundant code
+- unused imports
+- empty code blocks
+- etc.
+
+Most IDEs have code quality tools built in, but these can provide more in-depth analysis of your code:
+- SonarCloud
+    - A cloud-based static code analyzer that can review code loaded into a cloud-based repository, like github
+        - Navigate to the Sonar Cloud Login Page, and select "Log in with Github"
+        - Click on "Analyze your code" and follow the steps for project setup
+        - Select the repository to analyze.
+- SonarQube
+    - A code review tool that can be built into a DevOps pipeline. Typically considered a more "powerful" tool because of its configurability
+- SonarLint
+    - an open source plugin for many ides, it can be installed from your IDE's plugin marketplace
