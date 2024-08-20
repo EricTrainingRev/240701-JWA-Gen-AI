@@ -222,3 +222,45 @@ Most IDEs have code quality tools built in, but these can provide more in-depth 
     - A code review tool that can be built into a DevOps pipeline. Typically considered a more "powerful" tool because of its configurability
 - SonarLint
     - an open source plugin for many ides, it can be installed from your IDE's plugin marketplace
+
+## Jenkins
+
+### Introduction to Jenkins
+Jenkins is a popular open source DevOps tool: it allows you to create a DevOps pipeline where your pushes to the main github repo of your project will trigger Jenkins to clone your code to your EC2, test it, build it, and run it (There are other use cases, of course, but this is closest to how we can use it in training). There are many steps involved, and not all are necessary depending on the type of program you are running or the level of automation you want in your Continuous Delivery DevOps practice.
+
+A typical Jenkins instance will have a main controller that facilitates your DevOps operations and then worker nodes that actually execute your jobs (this is configured in the Jenkins main controller itself), but for small DevOps jobs the main controller can handle executing your **Jobs** itself
+
+### Jenkins Jobs and Builds
+A Jenkins **Job** and **Build** represent different aspects of a DevOps process. 
+
+A **Job** is what we call one or more associated tasks we configure Jenkins to execute to facilitate our DevOps pipeline. This can be actions such as cloning a repository, running tests, pushing test reports to a remote location, emailing notifications and/or results to designated individuals, starting or restarting applications depending on if a build succeeds or not, or any other action you want to happen as part of the DevOps process. Jenkins supports different configuration options for your jobs, two of the main options being a **Freestyle** and **Pipeline** job:
+- **Freestyle** jobs are set up through the Jenkins UI Directly, tend to involve fewer steps, and are easier to set up than other job options. That being said, they don't scale as well for more complex DevOps jobs, so they tend to be used for smaller DevOps jobs
+- **Pipeline** jobs have their initial configuration set up in the Jenkins UI, but the actual steps and actions involved in the job are typically saved in a **Jenkinsfile** that is saved in the SCM repository. The **Jenkinsfile** is written in Groovy Syntax, and it makes it much easier to determine the actions and agents involved in the actions that need to be taken. This allows for scaling the work done in a DevOps process to a greater degree than a **Freestyle** job because the Groov syntax allows for configuring your DevOps job programmatically, as opposed to configuring it via an options UI
+
+A **Build** is what we call the output of a Jenkins **Job**. Any compiled code, test results, build artifacts, and **Job** outputs (job results, logs generated, etc) are considered part of the **Build**. The resources created in a **Build** can be used further down the line in the DevOps process, or they can be archived for logging purposes
+
+### Creating a DevOps Pipeline (CICD pipeline) With Jenkins
+**Note**: this example will focus on creating a freestyle project and uses the recommended default plugins
+
+Configuration Options:
+- **General**
+    - This is where you can set information such as the description, github project url, and determine how many previous builds to keep
+- **Source Code Management**
+    - this is where you set what repository you want to clone for the job, and where you provide the git credentials necessary to interact with the repository using Jenkins managed credentials
+- **Build Triggers**
+    - if you want your job to trigger automatically you determine how that is done in this section. This can be a Github web hook, completion of another job, timer based, and more
+- **Build Environment**
+    - this is where you can provide extra information to Jenkins to configure the environment Jenkins will execute the job in: these are things like environment variables that only exist during the job, instructions for whether to delete old workspaces or not, and what to do if the job times out
+- **Build Steps/Post Build Steps**
+    - these are the actual commands Jenkins will execute during your Job execution. Build steps execution happens before the Build is completed, Post-Build steps happen after the build is completed
+
+### Jenkins Credentials Management
+Many Jenkins plugins abstract away using third party tools like Git and SSH. In order for these plugins to work properly they have to be provided proper credentials: Jenkins Credentials Management allows you to provide this data to the plugins will keeping them hidden from plain-text use in your Jobs, though many credential details will be available to users that can interact with the Jenkins instance. Depending on what kind of credentials a plugin needs, you will have to change the type of credential being saved in the management tool.
+
+### Jenkins Plugins and Integrations
+Plugins and Integrations are ways of modifying the default implementation of a Jenkins instance. Plugins are direct add-ons that extend the functionality of your Jenkins software. These can change the way you interact with the UI in Jenkins itself and modify the behavior of your Jobs. 
+
+Integrations are third party software the connect with Jenkins to help facilitate your Jobs, but are not a part of Jenkins directly. Git is a good example of an Integration: Jenkins has a lot of compatability with Git, and even has many plugins that make it easier to automate using Git, but Git is not actually part of the Jenkins application. They simply "integrate" well together
+
+### WebHooks
+A common way of triggering automated Jenkins Jobs is to use WebHooks: a WebHook is typically an HTTP request made to your Jenkins instance that can trigger a Job to start. In order to make use of a WebHook you have to configure your instance to listen for a web hook (typically done in the configurations of the Job you want automated by the WebHook) and then in your third party tool (like Github) you have to configure the service to to make an HTTP request (this is the hook) to your Jenkins application. This requires that Github or whatever service is making the request have permission to interact with your Jenkins instance: in AWS this is handled by configuring your security groups to allow Github access to Jenkins
