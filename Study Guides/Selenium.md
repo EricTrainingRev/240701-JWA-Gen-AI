@@ -21,6 +21,14 @@ To get started, first include the following dependency in your `pom.xml` file (a
   <artifactId>selenium-java</artifactId>
   <version>3.141.59</version>
 </dependency>
+
+<!-- NOTE: this dependency can be used to automate driver management -->
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.2.3</version>
+</dependency>
 ```
 
 You can find the most updated version [here](https://www.selenium.dev/maven/) as well.
@@ -47,8 +55,14 @@ To create a browser instance and go to google.com we can do the following:
 
 ```java
 // start here if using Selenium V3 or older
+
+// option 1: manually configure the driver resource
 File path = new File("src/main/resources/chromedriver.exe");
 System.setProperty("webdriver.chrome.driver", path.getAbsolutePath());
+
+// option 2: use the webdriver manager dependency to automatically configure a driver for you
+WebDrivermanager.chromedriver().setup();
+
 // start here if using Selenium V4 or newer
 WebDriver driver = new ChromeDriver();
 driver.get("https://google.com");
