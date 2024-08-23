@@ -86,12 +86,21 @@ There are a number of different storage classes, which control the way our data 
 ### Hosting Static Sites
 A web site is retrieved with an HTTP GET request to a URL, and the web server responds with the HTML, CSS, and JavaScript content that makes up the site. S3 buckets are already designed to serve data objects via HTTP and configuring them to host a site is as simple as one click. This will give you a public URL and have the S3 bucket respond to GET requests to that URL with your site as though it were a web server (which it basically is)
 
+### S3 Access Policies
+S3 Buckets have two main ways of controlling access to their resources: Access Control Lists (ACLs) and Bucket Policies (AWS recommended). ACLs are simpler to implement, but require more manual user input, whereas policies can be confusing to understand, but when implemented correctly make it easier to create batch access rules in the bucket. If ACLS are enabled in a bucket (determined when first created) then every object added to the bucket requires you to determine what level of access different users of the bucket have (owner can almost always read and update by default). Non-owners (determined again by your bucket settings) must be given permission to read and update the objects in the bucket. There are three options for determining ownership
+- Bucket Owner enforced (default, and recommended)
+    - in this mode ACLs are disabled and permissions must be determined via policies. All objects are owned by the creator of the bucket
+- Bucket Owner preferred
+    - not common, bucket creator is given control of the object if the ACL "bucket-owner-full-control" is selected
+- Object Writer
+    - the account that uploads the object is considered the owner, and grants other users access via ACL
+
 ## AWS EC2
 
 ### EC2 Introduction
-Amazon's Elastic Compute Cloud (EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. EC2s offer the following:
+Amazon's Elastic Compute Cloud (EC2) is a web service that provides secure, re-sizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. EC2s offer the following:
 - Virtual Computing Environments (images)
-    - preconfigured templates for your images known as Amazon Machine Images (AMIs). These include the OS and additional software you need
+    - pre-configured templates for your images known as Amazon Machine Images (AMIs). These include the OS and additional software you need
 - Various instance types. These have differing CPUs, memory, storage, and networking capacity
     - an instance is a virtual server in the cloud
 - secure login information for your instance
