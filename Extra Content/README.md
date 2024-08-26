@@ -1,0 +1,2 @@
+# NOTE
+The content in here is extra: For those that would like to learn more about Angular (a front end SPA framework) there is an example application and notes about Angular in this repo. This is not actual training content, just for those interested in learning more about another technology

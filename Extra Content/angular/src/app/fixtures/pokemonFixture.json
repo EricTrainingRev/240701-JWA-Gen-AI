@@ -1,0 +1,8 @@
+{
+  "pokemon":{
+    "name": "pikachu",
+    "sprites": ["source-one", "source-two"],
+    "types": ["electric"],
+    "moves": ["thunderbolt", "thunder", "mega-punch"]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "pokeId":"25",
+  "spritesFiltered":["source-one", "source-two"],
+  "pokemon":{
+    "name": "pikachu",
+    "sprites": ["source-one", "source-two", {
+      "source-three":"deep-link"
+    }],
+    "types": [
+      {
+        "type":{
+          "name":"electric"
+        }
+      }
+    ],
+    "moves": [
+      {
+        "move":{
+          "name":"thunderbolt"
+        }
+      },
+      {
+        "move": {
+          "name": "thunder"
+        }
+      },
+      {
+        "move": {
+          "name": "mega-punch"
+        }
+      }
+    ]
+  }
+}

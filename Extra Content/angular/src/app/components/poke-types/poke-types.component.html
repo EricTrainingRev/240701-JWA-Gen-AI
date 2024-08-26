@@ -1,0 +1,5 @@
+<div *ngIf="pokemonTypes.length != 0">
+  <ul>
+    <li *ngFor="let type of pokemonTypes" [ngStyle]="{'color':typesObject[type]}">{{type|titlecase}}</li>
+  </ul>
+</div>

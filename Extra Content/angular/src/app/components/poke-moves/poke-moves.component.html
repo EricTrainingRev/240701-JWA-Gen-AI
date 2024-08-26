@@ -1,0 +1,11 @@
+<div *ngIf="allMoves.length != 0">
+  <app-moves-filter [allMoves]="allMoves" (moveExporter)="updateDisplayList($event)"></app-moves-filter>
+  <table [ngStyle]="{'text-align' : moveTextAlignmentStyling}" appBoxStyling>
+    <thead>
+      <tr appBoxStyling><th>Move Name</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let move of moveDisplayList" appBoxStyling><td>{{move | dashRemover | uppercaseWords}}</td></tr>
+    </tbody>
+  </table>
+</div>

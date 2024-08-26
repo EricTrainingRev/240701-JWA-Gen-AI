@@ -1,0 +1,9 @@
+<div *ngIf="pokemonSprites.length != 0">
+  <!--
+    this is a little convoluted: ng-container would be more useful if a check was not being made in the service
+    to filter out invalid sprite data
+  -->
+  <ng-container *ngFor="let sprite of pokemonSprites">
+    <img src="{{sprite}}" alt="pokeSprite">
+  </ng-container>
+</div>
